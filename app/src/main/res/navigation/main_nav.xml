@@ -37,10 +37,18 @@
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_findPasswordFragment"
+            app:destination="@id/findPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.wangqing.chilemecilent.view.user.SignUpFragment"
         android:label="注册"
         tools:layout="@layout/fragment_sign_up" />
+    <fragment
+        android:id="@+id/findPasswordFragment"
+        android:name="com.wangqing.chilemecilent.view.user.FindPasswordFragment"
+        android:label="找回密码"
+        tools:layout="@layout/fragment_find_password" />
 </navigation>

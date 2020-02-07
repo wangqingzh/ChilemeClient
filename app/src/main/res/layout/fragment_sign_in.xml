@@ -39,7 +39,7 @@
         android:autofillHints="" />
 
     <Button
-        android:id="@+id/buttonLogin"
+        android:id="@+id/buttonSignIn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/signInButtonName"
@@ -51,34 +51,35 @@
         app:layout_constraintVertical_bias="0.073" />
 
     <TextView
-        android:id="@+id/textViewFindPassWord"
+        android:id="@+id/textViewFindPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/findPassWord"
         android:textSize="@dimen/smallFont"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textViewLoginUp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewSignUp"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/buttonLogin"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
+        app:layout_constraintStart_toStartOf="@+id/buttonSignIn"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSignIn"
         app:layout_constraintVertical_bias="0.166" />
 
     <TextView
-        android:id="@+id/textViewLoginUp"
+        android:id="@+id/textViewSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/signUp"
         android:textSize="@dimen/smallFont"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewFindPassWord"
-        app:layout_constraintEnd_toEndOf="@+id/buttonLogin"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewFindPassword"
+        app:layout_constraintEnd_toEndOf="@+id/buttonSignIn"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textViewFindPassWord"
-        app:layout_constraintTop_toTopOf="@+id/textViewFindPassWord" />
+        app:layout_constraintStart_toEndOf="@+id/textViewFindPassword"
+        app:layout_constraintTop_toTopOf="@+id/textViewFindPassword" />
 
     <ImageView
         android:id="@+id/imageViewLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/logoImageView"
         app:layout_constraintBottom_toTopOf="@+id/editTextUserName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

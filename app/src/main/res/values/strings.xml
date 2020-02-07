@@ -7,9 +7,22 @@
     <string name="partition">分区</string>
     <string name="message">消息</string>
     <string name="mine">我的</string>
-    <string name="loginUserNameHint">请输入您的手机号</string>
-    <string name="loginPassWordHint">请输入您的密码</string>
+    <string name="loginUserNameHint">请输入手机号</string>
+    <string name="loginPassWordHint">请输入密码</string>
     <string name="signInButtonName">登录</string>
     <string name="findPassWord">找回密码</string>
     <string name="signUp">注册</string>
+    <string name="logoImageView">登录时本app的logo</string>
+    <string name="signUpPasswordHint">请设置您的密码</string>
+    <string name="signUpVerificationCodeHint">请输入验证码</string>
+    <string name="securityQuestionHint">请输入密保问题</string>
+    <string name="securityAnswerHint">请输入密保答案</string>
+    <string name="securityQuestion">密保问题</string>
+    <string name="securityAnswer">密保答案</string>
+    <string name="phoneChinaCode">+86</string>
+    <string name="verificationCode">验证码</string>
+    <string name="password">密码</string>
+    <string name="getVerificationCode">获取验证码</string>
+    <string name="findPassword">找回密码</string>
+    <string name="securityQuestionPlaceHolder">密保问题占位</string>
 </resources>
