@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.wangqing.chilemecilent.view.bottomnavigation.HomeFragment"
+        android:label="首页"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/messageFragment"
+        android:name="com.wangqing.chilemecilent.view.bottomnavigation.MessageFragment"
+        android:label="消息"
+        tools:layout="@layout/fragment_message" />
+    <fragment
+        android:id="@+id/mineFragment"
+        android:name="com.wangqing.chilemecilent.view.bottomnavigation.MineFragment"
+        android:label="我的"
+        tools:layout="@layout/fragment_mine" >
+        <action
+            android:id="@+id/action_mineFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/partitionFragment"
+        android:name="com.wangqing.chilemecilent.view.bottomnavigation.PartitionFragment"
+        android:label="分区"
+        tools:layout="@layout/fragment_partition" />
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.wangqing.chilemecilent.view.user.SignInFragment"
+        android:label="登录"
+        tools:layout="@layout/fragment_sign_in">
+        <action
+            android:id="@+id/action_signInFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.wangqing.chilemecilent.view.user.SignUpFragment"
+        android:label="注册"
+        tools:layout="@layout/fragment_sign_up" />
+</navigation>
