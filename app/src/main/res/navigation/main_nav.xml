@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_mineFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_mineFragment_to_spaceFragment"
+            app:destination="@id/spaceFragment" />
     </fragment>
     <fragment
         android:id="@+id/partitionFragment"
@@ -51,4 +54,9 @@
         android:name="com.wangqing.chilemecilent.view.user.FindPasswordFragment"
         android:label="找回密码"
         tools:layout="@layout/fragment_find_password" />
+    <fragment
+        android:id="@+id/spaceFragment"
+        android:name="com.wangqing.chilemecilent.view.user.SpaceFragment"
+        android:label="个人空间"
+        tools:layout="@layout/fragment_space" />
 </navigation>

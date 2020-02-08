@@ -37,12 +37,12 @@ public class MineFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
 
-        getActivity().findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavController controller = Navigation.findNavController(v);
-                controller.navigate(R.id.action_mineFragment_to_signInFragment);
-            }
-        });
+//        getActivity().findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                NavController controller = Navigation.findNavController(v);
+//                controller.navigate(R.id.action_mineFragment_to_signInFragment);
+//            }
+//        });
     }
 }

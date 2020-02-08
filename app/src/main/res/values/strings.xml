@@ -28,4 +28,26 @@
     <string name="attention">关注</string>
     <string name="fans">粉丝</string>
     <string name="post">帖子</string>
+    <string name="用户昵称">nickeName</string>
+    <string name="uid">uid: %d</string>
+    <string name="attetionNumber">%d</string>
+    <string name="fansNumber">%d</string>
+    <string name="postNumber">%d</string>
+    <string name="userImageContentDescription">用户头像</string>
+    <string name="browseHistory">浏览历史</string>
+    <string name="historyNumber">历史数: %d</string>
+    <string name="myFavorite">我的收藏</string>
+    <string name="favoriteNumber">收藏数: %d</string>
+    <string name="myLike">我点赞的</string>
+    <string name="likeNumber">点赞数: %d</string>
+    <string name="setting">设置</string>
+    <string name="compusRestaurant">校园餐饮</string>
+    <string name="physicalStore">实体店</string>
+    <string name="OnlineShopping">网购</string>
+    <string name="messageRely">回复我的</string>
+    <string name="messageLikes">我收到的赞</string>
+    <string name="recommend">推荐</string>
+    <string name="attetion">关注</string>
+    <string name="ic_compusRestaurant">校园餐饮icon</string>
+    <string name="takeout">外卖</string>
 </resources>

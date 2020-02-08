@@ -3,6 +3,7 @@
     <dimen name="smallFont">16sp</dimen>
     <dimen name="smallPlusFont">18sp</dimen>
     <dimen name="middleFont">20sp</dimen>
+    <dimen name="middlePlusFont">22sp</dimen>
     <dimen name="bigFont">24sp</dimen>
     <dimen name="bigPlusFont">26sp</dimen>
 
