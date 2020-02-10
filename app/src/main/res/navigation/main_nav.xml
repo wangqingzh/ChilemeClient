@@ -26,6 +26,12 @@
         <action
             android:id="@+id/action_mineFragment_to_spaceFragment"
             app:destination="@id/spaceFragment" />
+        <action
+            android:id="@+id/action_mineFragment_to_editFragment"
+            app:destination="@id/editFragment" />
+        <action
+            android:id="@+id/action_mineFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
     <fragment
         android:id="@+id/partitionFragment"
@@ -51,12 +57,22 @@
         tools:layout="@layout/fragment_sign_up" />
     <fragment
         android:id="@+id/findPasswordFragment"
-        android:name="com.wangqing.chilemecilent.view.user.FindPasswordFragment"
+        android:name="com.wangqing.chilemecilent.view.user.ForgetPasswordFragment"
         android:label="找回密码"
-        tools:layout="@layout/fragment_find_password" />
+        tools:layout="@layout/fragment_forget_password" />
     <fragment
         android:id="@+id/spaceFragment"
-        android:name="com.wangqing.chilemecilent.view.user.SpaceFragment"
+        android:name="com.wangqing.chilemecilent.view.mine.SpaceFragment"
         android:label="个人空间"
         tools:layout="@layout/fragment_space" />
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="com.wangqing.chilemecilent.view.mine.EditFragment"
+        android:label="编辑"
+        tools:layout="@layout/fragment_edit" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.wangqing.chilemecilent.view.mine.SettingFragment"
+        android:label="设置"
+        tools:layout="@layout/fragment_setting" />
 </navigation>

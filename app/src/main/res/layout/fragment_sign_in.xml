@@ -51,10 +51,10 @@
         app:layout_constraintVertical_bias="0.073" />
 
     <TextView
-        android:id="@+id/textViewFindPassword"
+        android:id="@+id/textViewForgetPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/findPassWord"
+        android:text="@string/forgetPassword"
         android:textSize="@dimen/smallFont"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textViewSignUp"
@@ -69,11 +69,11 @@
         android:layout_height="wrap_content"
         android:text="@string/signUp"
         android:textSize="@dimen/smallFont"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewFindPassword"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewForgetPassword"
         app:layout_constraintEnd_toEndOf="@+id/buttonSignIn"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textViewFindPassword"
-        app:layout_constraintTop_toTopOf="@+id/textViewFindPassword" />
+        app:layout_constraintStart_toEndOf="@+id/textViewForgetPassword"
+        app:layout_constraintTop_toTopOf="@+id/textViewForgetPassword" />
 
     <ImageView
         android:id="@+id/imageViewLogo"

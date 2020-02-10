@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.wangqing.chilemecilent.R;
 
 /**
@@ -47,7 +46,7 @@ public class SignInFragment extends Fragment {
             }
         });
 
-        getActivity().findViewById(R.id.textViewFindPassword).setOnClickListener(new View.OnClickListener() {
+        getActivity().findViewById(R.id.textViewForgetPassword).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 NavController controller = Navigation.findNavController(v);

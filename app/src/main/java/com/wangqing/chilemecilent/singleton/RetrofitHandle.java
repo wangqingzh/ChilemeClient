@@ -1,4 +1,8 @@
 package com.wangqing.chilemecilent.singleton;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.wangqing.chilemecilent.R;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -11,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * 并在本单例中进行一些相关配置
  */
 public class RetrofitHandle {
-    public static final String BASE_URL = "https://pixabay.com/api/";
+    public static final String BASE_URL = "http://192.168.2.225:8080/api/v1/";
     public static final int CONNECT_TIME_OUT = 10000;
     private Retrofit mRetrofit;
 
@@ -31,28 +35,32 @@ public class RetrofitHandle {
                 .addInterceptor(loggingInterceptor)
                 .connectTimeout(CONNECT_TIME_OUT, TimeUnit.MILLISECONDS)
                 .build();
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd hh:mm:ss")
+                .serializeNulls()
+                .create();
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient)
                 .build();
     }
 
-    private static RetrofitHandle sRetrofitCteator = null;
+    private static RetrofitHandle sRetrofitCreator = null;
 
     /**
      *
      * @return 单例
      */
     public static RetrofitHandle getInstance(){
-        if (sRetrofitCteator == null){
+        if (sRetrofitCreator == null){
             synchronized (RetrofitHandle.class){
-                if (sRetrofitCteator == null){
-                    sRetrofitCteator = new RetrofitHandle();
+                if (sRetrofitCreator == null){
+                    sRetrofitCreator = new RetrofitHandle();
                 }
             }
         }
-        return sRetrofitCteator;
+        return sRetrofitCreator;
     }
 
     public Retrofit getRetrofit(){
