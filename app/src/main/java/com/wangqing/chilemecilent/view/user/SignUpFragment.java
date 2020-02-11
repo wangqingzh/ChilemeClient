@@ -65,10 +65,11 @@ public class SignUpFragment extends Fragment {
                 //Toast.makeText(requireContext(), binding.editTextPassword.getText().toString(), Toast.LENGTH_SHORT).show();
                 SignUpDto signUpDto = SignUpDto.of(binding.editTextUserName.getText().toString(), binding.editTextPassword.getText().toString(),
                         binding.editTextSecurityQuestion.getText().toString(), binding.editTextSecurityAnswer.getText().toString());
-                if (signUp(signUpDto)){
-                    NavController controller = Navigation.findNavController(v);
-                    controller.navigateUp();
-                }
+                signUp(signUpDto);
+                //                if (signUp(signUpDto)){
+//                    NavController controller = Navigation.findNavController(v);
+//                    controller.navigateUp();
+//                }
             }
         });
     }
@@ -76,28 +77,48 @@ public class SignUpFragment extends Fragment {
 
 
 
+//    // 注册逻辑 向服务端发送数据数据
+//    public boolean signUp(SignUpDto signUpDto){
+//        UserApi userApi = RetrofitHandle.getInstance().getRetrofit().create(UserApi.class);
+//        CommonResult<String> commonResult = null;
+//        Call<CommonResult<String>> task = userApi.signUp(signUpDto);
+//        try {
+//            commonResult = task.execute().body();
+//        } catch (IOException e) {
+//            Log.d(TAG, "signUp: " + e.getMessage());
+//        }
+//        if (commonResult == null){
+//            Toast.makeText(requireContext(), "网络出错，请重试！", Toast.LENGTH_SHORT).show();
+//            return false;
+//        }else if (commonResult.getCode().equals(2005)){
+//            Toast.makeText(requireContext(), "用户已存在！", Toast.LENGTH_SHORT).show();
+//            return false;
+//        }else if (commonResult.getCode().equals(1)){
+//            Toast.makeText(requireContext(), "注册成功，请登录！", Toast.LENGTH_SHORT).show();
+//            return true;
+//        }
+//
+//        return false;
+//    }
+
+
     // 注册逻辑 向服务端发送数据数据
-    public boolean signUp(SignUpDto signUpDto){
+    public void signUp(SignUpDto signUpDto){
         UserApi userApi = RetrofitHandle.getInstance().getRetrofit().create(UserApi.class);
         CommonResult<String> commonResult = null;
         Call<CommonResult<String>> task = userApi.signUp(signUpDto);
-        try {
-            commonResult = task.execute().body();
-        } catch (IOException e) {
-            Log.d(TAG, "signUp: " + e.getMessage());
-        }
-        if (commonResult == null){
-            Toast.makeText(requireContext(), "网络出错，请重试！", Toast.LENGTH_SHORT).show();
-            return false;
-        }else if (commonResult.getCode().equals(2005)){
-            Toast.makeText(requireContext(), "用户已存在！", Toast.LENGTH_SHORT).show();
-            return false;
-        }else if (commonResult.getCode().equals(1)){
-            Toast.makeText(requireContext(), "注册成功，请登录！", Toast.LENGTH_SHORT).show();
-            return true;
-        }
+        task.enqueue(new Callback<CommonResult<String>>() {
+            @Override
+            public void onResponse(Call<CommonResult<String>> call, Response<CommonResult<String>> response) {
+                CommonResult<String> result = response.body();
+                Log.d(TAG, "onResponse: " + result);
+            }
 
-        return false;
+            @Override
+            public void onFailure(Call<CommonResult<String>> call, Throwable t) {
+
+            }
+        });
     }
 
 }

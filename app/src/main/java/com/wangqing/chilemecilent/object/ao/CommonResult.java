@@ -3,8 +3,10 @@ package com.wangqing.chilemecilent.object.ao;
 import java.time.LocalDateTime;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class CommonResult<T> {
     //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
     /* 时间戳 */

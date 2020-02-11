@@ -1,5 +1,14 @@
 package com.wangqing.chilemecilent;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkRequest;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,19 +18,17 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.Network;
-import android.net.NetworkCapabilities;
-import android.net.NetworkInfo;
-import android.net.NetworkRequest;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 public class MainActivity extends AppCompatActivity implements NavController.OnDestinationChangedListener {
 
@@ -58,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavController.OnD
         if (connectivityManager != null) {
             connectivityManager.registerNetworkCallback(request, networkCallback);
         }
+
     }
 
     /**
@@ -84,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements NavController.OnD
             case R.id.partitionFragment:
             case R.id.messageFragment:
             case R.id.mineFragment:
+            case R.id.signInFragment:
                 bottomNavigationView.setVisibility(View.VISIBLE);
                 break;
             default:
@@ -95,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements NavController.OnD
     /**
      * 网络变化回调
      */
-    class NetworkCallbackImpl extends ConnectivityManager.NetworkCallback{
+    class NetworkCallbackImpl extends ConnectivityManager.NetworkCallback {
 
         @Override
         public void onLost(@NonNull Network network) {
@@ -107,10 +116,14 @@ public class MainActivity extends AppCompatActivity implements NavController.OnD
         public void onCapabilitiesChanged(@NonNull Network network, @NonNull NetworkCapabilities networkCapabilities) {
             super.onCapabilitiesChanged(network, networkCapabilities);
             if (networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)) {
-               if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
                     Toast.makeText(MainActivity.this, "您正在使用移动网络", Toast.LENGTH_SHORT).show();
                 }
             }
         }
     }
+
+
+
+
 }
