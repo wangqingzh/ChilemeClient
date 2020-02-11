@@ -9,8 +9,17 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
+import android.net.NetworkRequest;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -40,6 +49,15 @@ public class MainActivity extends AppCompatActivity implements NavController.OnD
         //设置导航监听器 在某些页面隐藏bottomNavigationView
         navController.addOnDestinationChangedListener(this);
 
+
+        // 动态检测网络变化
+        NetworkCallbackImpl networkCallback = new NetworkCallbackImpl();
+        NetworkRequest.Builder builder = new NetworkRequest.Builder();
+        NetworkRequest request = builder.build();
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            connectivityManager.registerNetworkCallback(request, networkCallback);
+        }
     }
 
     /**
@@ -71,6 +89,28 @@ public class MainActivity extends AppCompatActivity implements NavController.OnD
             default:
                 bottomNavigationView.setVisibility(View.GONE);
                 break;
+        }
+    }
+
+    /**
+     * 网络变化回调
+     */
+    class NetworkCallbackImpl extends ConnectivityManager.NetworkCallback{
+
+        @Override
+        public void onLost(@NonNull Network network) {
+            super.onLost(network);
+            Toast.makeText(MainActivity.this, "网络不可用", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onCapabilitiesChanged(@NonNull Network network, @NonNull NetworkCapabilities networkCapabilities) {
+            super.onCapabilitiesChanged(network, networkCapabilities);
+            if (networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)) {
+               if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                    Toast.makeText(MainActivity.this, "您正在使用移动网络", Toast.LENGTH_SHORT).show();
+                }
+            }
         }
     }
 }
