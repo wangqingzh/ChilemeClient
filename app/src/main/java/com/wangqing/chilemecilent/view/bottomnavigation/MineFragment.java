@@ -21,7 +21,7 @@ import com.wangqing.chilemecilent.utils.AccountManager;
 /**
  * MineFragment 底部导航之一的我的页面
  */
-public class MineFragment extends Fragment {
+public class MineFragment extends Fragment  implements View.OnClickListener{
 
     private final String TAG = this.getClass().toString();
     private FragmentMineBinding binding;
@@ -51,6 +51,21 @@ public class MineFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        binding.settingLayout.setOnClickListener(this);
+    }
+
+    /**
+     * 处理该页面的点击事件
+     * @param v
+     */
+    @Override
+    public void onClick(View v) {
+        NavController controller = Navigation.findNavController(v);
+        switch (v.getId()){
+            case R.id.settingLayout:
+                controller.navigate(R.id.action_mineFragment_to_settingFragment);
+                break;
+        }
 
     }
 }

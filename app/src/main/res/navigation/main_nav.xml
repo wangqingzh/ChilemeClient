@@ -47,19 +47,14 @@
             android:id="@+id/action_signInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
         <action
-            android:id="@+id/action_signInFragment_to_findPasswordFragment"
-            app:destination="@id/findPasswordFragment" />
+            android:id="@+id/action_signInFragment_to_forgetPasswordFragment"
+            app:destination="@id/forgetPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.wangqing.chilemecilent.view.user.SignUpFragment"
         android:label="注册"
         tools:layout="@layout/fragment_sign_up" />
-    <fragment
-        android:id="@+id/findPasswordFragment"
-        android:name="com.wangqing.chilemecilent.view.user.ForgetPasswordFragment"
-        android:label="找回密码"
-        tools:layout="@layout/fragment_forget_password" />
     <fragment
         android:id="@+id/spaceFragment"
         android:name="com.wangqing.chilemecilent.view.mine.SpaceFragment"
@@ -75,4 +70,9 @@
         android:name="com.wangqing.chilemecilent.view.mine.SettingFragment"
         android:label="设置"
         tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/forgetPasswordFragment"
+        android:name="com.wangqing.chilemecilent.view.user.ForgetPasswordFragment"
+        android:label="忘记密码"
+        tools:layout="@layout/fragment_forget_password" />
 </navigation>

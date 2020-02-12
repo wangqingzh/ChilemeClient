@@ -85,7 +85,7 @@ public class SignUpFragment extends Fragment {
                             NavController controller = NavHostFragment.findNavController(SignUpFragment.this);
                             controller.navigateUp();
                         }
-                    }, 2000);
+                    }, 1000);
                 }else if (commonResult.getCode() == 2005){
                     Toast.makeText(requireContext(), "该手机号已存在！", Toast.LENGTH_SHORT).show();
                     binding.editTextUserName.hasFocus();

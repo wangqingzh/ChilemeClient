@@ -1,6 +1,9 @@
-package com.wangqing.chilemecilent.object.ao;
+package com.wangqing.chilemecilent.object.dto;
 
-public class Token {
+/**
+ * 获取 token 成功返回结果
+ */
+public class TokenDto {
 
     /**
      * access_token : 856f8c56-e149-4328-ae66-73351e2b8a7a

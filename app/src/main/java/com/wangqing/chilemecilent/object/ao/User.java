@@ -10,7 +10,7 @@ import lombok.Data;
  */
 
 @Data
-public class UserInfo implements Serializable {
+public class User implements Serializable {
     /* 用户id */
     private Integer userId;
     /* access_token */
@@ -20,4 +20,9 @@ public class UserInfo implements Serializable {
     /* 过期时间 */
     private Date expires_in;
 
+    private Info info;
+
+    static class Info implements Serializable{
+
+    }
 }

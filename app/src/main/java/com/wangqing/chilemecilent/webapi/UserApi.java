@@ -6,7 +6,7 @@ package com.wangqing.chilemecilent.webapi;
 
 import com.wangqing.chilemecilent.object.ao.CheckToken;
 import com.wangqing.chilemecilent.object.ao.CommonResult;
-import com.wangqing.chilemecilent.object.ao.Token;
+import com.wangqing.chilemecilent.object.dto.TokenDto;
 import com.wangqing.chilemecilent.object.dto.SignUpDto;
 
 import retrofit2.Call;
@@ -22,11 +22,11 @@ public interface UserApi {
 
     /* 获取token */
     @POST("oauth/token?grant_type=password&scope=all&client_id=user&client_secret=123")
-    Call<Token> getToken(@Query("username") String userName, @Query("password") String passWord);
+    Call<TokenDto> getToken(@Query("username") String userName, @Query("password") String passWord);
 
     /* 刷新token */
     @POST("oauth/token?grant_type=refresh_token&scope=all&client_id=user&client_secret=123")
-    Call<Token> refreshToken(@Query("refresh_token") String refreshToken);
+    Call<TokenDto> refreshToken(@Query("refresh_token") String refreshToken);
 
     /* 确认token */
     @POST("oauth/check_token")

@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
-import com.wangqing.chilemecilent.object.ao.UserInfo;
+import com.wangqing.chilemecilent.object.ao.User;
 
 /**
  * 账户管理类
@@ -16,14 +16,14 @@ public final class AccountManager {
     private final ACache aCache;
     private boolean isOnline;
     private String token;
-    private UserInfo userInfo;
+    private User user;
 
     private AccountManager(Application context){
         sharedPreferences = context.getSharedPreferences("token", Context.MODE_PRIVATE);
         aCache = ACache.get(context);
         isOnline = sharedPreferences.getBoolean("isOnline", false);
         token = sharedPreferences.getString("token", null);
-        userInfo = (UserInfo) aCache.getAsObject("userInfo");
+        user = (User) aCache.getAsObject("user");
     }
 
     public static AccountManager getInstance(Application application){
@@ -55,18 +55,18 @@ public final class AccountManager {
         return token;
     }
 
-    public void setUserInfo(UserInfo userInfo){
-        aCache.put("userInfo", userInfo);
+    public void setUser(User user){
+        aCache.put("user", user);
     }
 
-    public UserInfo getUserInfo(){
-        return userInfo;
+    public User getUser(){
+        return user;
     }
 
     public void logOut(){
         setOnline(false);
         setToken(null);
-        setUserInfo(null);
+        setUser(null);
     }
 
 

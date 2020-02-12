@@ -52,5 +52,9 @@
     <string name="takeout">外卖</string>
     <string name="editInfo">编辑</string>
     <string name="forgetPassword">忘记密码</string>
+    <string name="setting_phone">手机号</string>
+    <string name="setting_modifypassword">修改账户密码</string>
+    <string name="setting_about">关于</string>
+    <string name="setting_logout">退出登录</string>
 
 </resources>
