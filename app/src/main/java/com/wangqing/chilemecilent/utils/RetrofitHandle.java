@@ -1,4 +1,4 @@
-package com.wangqing.chilemecilent.singleton;
+package com.wangqing.chilemecilent.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -16,6 +16,7 @@ import javax.net.ssl.X509TrustManager;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -68,7 +69,8 @@ public class RetrofitHandle {
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
             OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                    .addInterceptor(loggingInterceptor)
+                    .addInterceptor(new LogInterceptor())//添加打印拦截器
+                    //.addInterceptor(loggingInterceptor)
                     .connectTimeout(CONNECT_TIME_OUT, TimeUnit.MILLISECONDS)
 
                     .sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0])
@@ -88,6 +90,7 @@ public class RetrofitHandle {
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .client(okHttpClient)
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) //添加对RxJava的支持
                     .build();
 
         } catch (Exception e) {

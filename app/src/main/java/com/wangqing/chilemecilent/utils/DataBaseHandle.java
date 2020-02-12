@@ -1,9 +1,8 @@
-package com.wangqing.chilemecilent.singleton;
+package com.wangqing.chilemecilent.utils;
 
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.migration.Migration;

@@ -9,5 +9,5 @@ import retrofit2.http.POST;
 
 public interface UserApi {
     @POST("user")
-    Call<CommonResult<String>> signUp(@Body SignUpDto signUpDto);
+    Call<CommonResult<Object>> signUp(@Body SignUpDto signUpDto);
 }
