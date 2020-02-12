@@ -2,16 +2,16 @@ package com.wangqing.chilemecilent.view.user;
 
 
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.wangqing.chilemecilent.R;
@@ -76,14 +76,25 @@ public class SignUpFragment extends Fragment {
         task.enqueue(new Callback<CommonResult<Object>>() {
             @Override
             public void onResponse(Call<CommonResult<Object>> call, Response<CommonResult<Object>> response) {
-                Log.d(TAG, "onResponse: " + response.body());
+                CommonResult<Object> commonResult = response.body();
+                if (commonResult.getCode() == 1){
+                    Toast.makeText(requireContext(), "注册成功！即将跳转登录", Toast.LENGTH_SHORT).show();
+                    new Handler().postDelayed(new Runnable() {  // 在等待中 用户提前返回 应用提出 *待解决*
+                        @Override
+                        public void run() {
+                            NavController controller = NavHostFragment.findNavController(SignUpFragment.this);
+                            controller.navigateUp();
+                        }
+                    }, 2000);
+                }else if (commonResult.getCode() == 2005){
+                    Toast.makeText(requireContext(), "该手机号已存在！", Toast.LENGTH_SHORT).show();
+                    binding.editTextUserName.hasFocus();
+                }
             }
 
             @Override
             public void onFailure(Call<CommonResult<Object>> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getCause());
-                NavController controller = NavHostFragment.findNavController(SignUpFragment.this);
-                controller.navigateUp();
+                Toast.makeText(requireContext(), "注册失败，请重试", Toast.LENGTH_SHORT).show();
             }
         });
     }
