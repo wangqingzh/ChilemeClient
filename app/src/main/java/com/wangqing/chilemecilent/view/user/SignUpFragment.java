@@ -3,6 +3,7 @@ package com.wangqing.chilemecilent.view.user;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,6 +77,7 @@ public class SignUpFragment extends Fragment {
         task.enqueue(new Callback<CommonResult<Object>>() {
             @Override
             public void onResponse(Call<CommonResult<Object>> call, Response<CommonResult<Object>> response) {
+                Log.d(TAG, "onResponse: " + response.code());
                 CommonResult<Object> commonResult = response.body();
                 if (commonResult.getCode() == 1){
                     Toast.makeText(requireContext(), "注册成功！即将跳转登录", Toast.LENGTH_SHORT).show();

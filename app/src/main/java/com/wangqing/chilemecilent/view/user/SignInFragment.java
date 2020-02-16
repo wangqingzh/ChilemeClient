@@ -17,11 +17,14 @@ import android.widget.Toast;
 
 import com.wangqing.chilemecilent.R;
 import com.wangqing.chilemecilent.databinding.FragmentSignInBinding;
+import com.wangqing.chilemecilent.object.ao.CommonResult;
 import com.wangqing.chilemecilent.object.ao.User;
 import com.wangqing.chilemecilent.object.dto.TokenDto;
 import com.wangqing.chilemecilent.utils.AccountManager;
 import com.wangqing.chilemecilent.utils.RetrofitHandle;
 import com.wangqing.chilemecilent.webapi.UserApi;
+
+import java.time.LocalDateTime;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,6 +37,8 @@ import retrofit2.Response;
 public class SignInFragment extends Fragment implements View.OnClickListener{
 
     private FragmentSignInBinding binding;
+
+    private UserApi userApi = RetrofitHandle.getInstance().getRetrofit().create(UserApi.class);
 
     private String userName;
     private String passWord;
@@ -93,7 +98,7 @@ public class SignInFragment extends Fragment implements View.OnClickListener{
         userName = binding.editTextUserName.getText().toString();
         passWord = binding.editTextPassWord.getText().toString();
 
-        UserApi userApi = RetrofitHandle.getInstance().getRetrofit().create(UserApi.class);
+
         Call<TokenDto> task = userApi.getToken(userName, passWord);
         task.enqueue(new Callback<TokenDto>() {
             @Override
@@ -119,19 +124,31 @@ public class SignInFragment extends Fragment implements View.OnClickListener{
      */
     private void signInSuccess(TokenDto token){
         AccountManager accountManager = AccountManager.getInstance(requireActivity().getApplication());
+        Call<CommonResult<Integer>> task = userApi.getUserId(userName);
+        task.enqueue(new Callback<CommonResult<Integer>>() {
+            @Override
+            public void onResponse(Call<CommonResult<Integer>> call, Response<CommonResult<Integer>> response) {
+                if (response.code() == 200){
+                    User user = new User();
+                    user.setUserId(response.body().getData());  // 设置用户id
+                    user.setAccess_token(token.getAccess_token());  // 设置用户token
+                    user.setRefresh_token(token.getAccess_token()); // 设置用户刷新token
+                    user.setExpires_in(LocalDateTime.now().plusSeconds(token.getExpires_in())); // 设置过期时间
 
-        User user = new User();
-        user.setAccess_token(token.getAccess_token());
-        user.setRefresh_token(token.getAccess_token());
+                    accountManager.setOnline(true);
+                    accountManager.setToken(token.getAccess_token());
+                    accountManager.setUser(user);
 
+                    Toast.makeText(requireContext(), "登录成功", Toast.LENGTH_SHORT).show();
+                    NavController controller = NavHostFragment.findNavController(SignInFragment.this);
+                    controller.navigateUp();
+                }
+            }
 
-        accountManager.setOnline(true);
-        accountManager.setToken(token.getAccess_token());
-        accountManager.setUser(user);
+            @Override
+            public void onFailure(Call<CommonResult<Integer>> call, Throwable t) {
 
-
-        Toast.makeText(requireContext(), "登录成功", Toast.LENGTH_SHORT).show();
-        NavController controller = NavHostFragment.findNavController(this);
-        controller.navigateUp();
+            }
+        });
     }
 }

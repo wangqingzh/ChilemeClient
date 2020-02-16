@@ -11,7 +11,9 @@ import com.wangqing.chilemecilent.object.dto.SignUpDto;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.DELETE;
 
@@ -35,4 +37,7 @@ public interface UserApi {
     /* 清除token 退出登录 */
     @DELETE("oauth/token")
     Call<CommonResult<Object>> revokeToken(@Query("access_token") String accessToken);
+
+    @GET("api/v1/user/{identifier}")
+    Call<CommonResult<Integer>> getUserId(@Path("identifier") String identifier);
 }

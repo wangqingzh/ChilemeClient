@@ -37,7 +37,11 @@
         android:id="@+id/partitionFragment"
         android:name="com.wangqing.chilemecilent.view.bottomnavigation.PartitionFragment"
         android:label="分区"
-        tools:layout="@layout/fragment_partition" />
+        tools:layout="@layout/fragment_partition" >
+        <action
+            android:id="@+id/action_partitionFragment_to_postFragment"
+            app:destination="@id/postFragment" />
+    </fragment>
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.wangqing.chilemecilent.view.user.SignInFragment"
@@ -75,4 +79,9 @@
         android:name="com.wangqing.chilemecilent.view.user.ForgetPasswordFragment"
         android:label="忘记密码"
         tools:layout="@layout/fragment_forget_password" />
+    <fragment
+        android:id="@+id/postFragment"
+        android:name="com.wangqing.chilemecilent.view.partition.PostFragment"
+        android:label="发帖"
+        tools:layout="@layout/fragment_post" />
 </navigation>

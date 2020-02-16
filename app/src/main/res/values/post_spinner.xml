@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="post_spinner">
+        <item>校园餐饮</item>
+        <item>实体店</item>
+        <item>网购</item>
+        <item>外卖</item>
+        <item>自己做</item>
+    </string-array>
+</resources>

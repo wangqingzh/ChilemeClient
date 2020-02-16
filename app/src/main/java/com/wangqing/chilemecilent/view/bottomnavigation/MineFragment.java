@@ -2,21 +2,22 @@ package com.wangqing.chilemecilent.view.bottomnavigation;
 
 
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+
 import com.wangqing.chilemecilent.R;
 import com.wangqing.chilemecilent.databinding.FragmentMineBinding;
 import com.wangqing.chilemecilent.utils.AccountManager;
+import com.wangqing.chilemecilent.viewmodel.bottomnavigation.MineViewModel;
 
 /**
  * MineFragment 底部导航之一的我的页面
@@ -25,11 +26,16 @@ public class MineFragment extends Fragment  implements View.OnClickListener{
 
     private final String TAG = this.getClass().toString();
     private FragmentMineBinding binding;
-
+    private MineViewModel mineViewModel;
     public MineFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +47,8 @@ public class MineFragment extends Fragment  implements View.OnClickListener{
         }
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mine, container, false);
+        mineViewModel = new ViewModelProvider(requireActivity()).get(MineViewModel.class);
+        binding.setData(mineViewModel);
         binding.setLifecycleOwner(requireActivity());
 
         return binding.getRoot();
@@ -52,6 +60,7 @@ public class MineFragment extends Fragment  implements View.OnClickListener{
         super.onActivityCreated(savedInstanceState);
 
         binding.settingLayout.setOnClickListener(this);
+        binding.buttonEdit.setOnClickListener(this);
     }
 
     /**
@@ -64,6 +73,9 @@ public class MineFragment extends Fragment  implements View.OnClickListener{
         switch (v.getId()){
             case R.id.settingLayout:
                 controller.navigate(R.id.action_mineFragment_to_settingFragment);
+                break;
+            case R.id.buttonEdit:
+                controller.navigate(R.id.action_mineFragment_to_editFragment);
                 break;
         }
 
