@@ -1,21 +1,28 @@
 package com.wangqing.chilemecilent.view.mine;
 
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.wangqing.chilemecilent.R;
+import com.wangqing.chilemecilent.databinding.FragmentSettingBinding;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SettingFragment extends Fragment {
-
+public class SettingFragment extends Fragment implements View.OnClickListener {
+    private FragmentSettingBinding binding;
 
     public SettingFragment() {
         // Required empty public constructor
@@ -25,8 +32,53 @@ public class SettingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_setting, container, false);
+        binding.setLifecycleOwner(requireActivity());
+
+        return binding.getRoot();
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_setting, container, false);
+        // return inflater.inflate(R.layout.fragment_setting, container, false);
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        binding.settingPhone.setOnClickListener(this);
+        binding.settingModifyPassword.setOnClickListener(this);
+        binding.settingAbout.setOnClickListener(this);
+        binding.buttonLogOut.setOnClickListener(this);
+    }
+
+    /**
+     * 处理点击事件
+     *
+     * @param v
+     */
+    @Override
+    public void onClick(View v) {
+        NavController controller = Navigation.findNavController(v);
+        switch (v.getId()) {
+            case R.id.settingPhone:
+                break;
+            case R.id.settingModifyPassword:
+                controller.navigate(R.id.action_settingFragment_to_modifyPasswordFragment);
+                break;
+            case R.id.settingAbout:
+                settingAbout();
+                break;
+            case R.id.buttonLogOut:
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void settingAbout() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        TextView textView = new TextView(requireContext());
+        textView.setText("吃了么客户端\n2020");
+        builder.setView(textView);
+        //builder.setTitle();
+        builder.show();
+    }
 }

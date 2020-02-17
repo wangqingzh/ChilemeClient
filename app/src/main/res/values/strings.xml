@@ -67,5 +67,10 @@
     <string name="edit_intro">简介</string>
     <string name="edit_avatar">头像</string>
     <string name="edit_space_cover">空间封面</string>
+    <string name="modify_password">修改密码</string>
+    <string name="modify_password_verification_code">验证码</string>
+    <string name="modify_password_password">密码</string>
+    <string name="mine_personal_info">个人信息</string>
+    <string name="mine_personal_space">个人空间</string>
 
 </resources>

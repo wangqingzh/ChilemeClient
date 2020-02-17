@@ -10,8 +10,7 @@ public class MineViewModel extends ViewModel {
 
     public void MineViewModel(){
 
-        nikeName = new MutableLiveData<>();
-        nikeName.setValue("fdajl");
+
 
 
 
@@ -19,6 +18,9 @@ public class MineViewModel extends ViewModel {
 
 
     public MutableLiveData<String> getNikeName() {
+        nikeName = new MutableLiveData<>();
+        nikeName.setValue("fdajl");
+
         return nikeName;
     }
 
