@@ -14,6 +14,7 @@ public final class AccountManager {
     private static AccountManager INSTANCE;
     private final SharedPreferences sharedPreferences;
     private final ACache aCache;
+
     private boolean isOnline;
     private String token;
     private User user;
@@ -57,6 +58,7 @@ public final class AccountManager {
 
     public void setUser(User user){
         aCache.put("user", user);
+        this.user = user;
     }
 
     public User getUser(){

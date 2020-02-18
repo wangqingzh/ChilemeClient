@@ -18,14 +18,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="0dp"
-            android:layout_height="160dp"
+            android:layout_height="150dp"
             android:background="@color/foregroundColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/avatar"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
@@ -36,30 +36,31 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.173"
-                tools:src="@drawable/ic_mine_blue_24dp" />
+                tools:src="@drawable/avatar" />
 
             <TextView
-                android:id="@+id/textViewNikeName"
+                android:id="@+id/nikeName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{data.nikeName}"
+                android:layout_marginStart="24dp"
+                android:text="@{data.info.nickName}"
                 android:textSize="@dimen/bigFont"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.179"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/avatar"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.129" />
 
             <TextView
-                android:id="@+id/textViewUid"
+                android:id="@+id/uid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{@string/uid(data.uid)}"
+                android:text="@{@string/uid(data.info.userId)}"
                 android:textSize="@dimen/smallPlusFont"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textViewNikeName"
-                app:layout_constraintTop_toBottomOf="@+id/textViewNikeName"
+                app:layout_constraintStart_toStartOf="@+id/nikeName"
+                app:layout_constraintTop_toBottomOf="@+id/nikeName"
                 app:layout_constraintVertical_bias="0.172" />
 
             <TextView
@@ -98,37 +99,38 @@
                 app:layout_constraintStart_toEndOf="@+id/textView9" />
 
             <TextView
-                android:id="@+id/textViewAttentionNumber"
+                android:id="@+id/attentionNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/attetionNumber"
+                android:text="@{@string/attentionNumber(data.info.attentionNumber)}"
                 android:textSize="14sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textViewFansNumber"
+                app:layout_constraintBaseline_toBaselineOf="@+id/fansNumber"
                 app:layout_constraintEnd_toEndOf="@+id/textView7"
                 app:layout_constraintStart_toStartOf="@+id/textView7"
                 tools:text="8" />
 
             <TextView
-                android:id="@+id/textViewFansNumber"
+                android:id="@+id/fansNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/fansNumber"
+                android:text="@{@string/fansNumber(data.info.fansNumber)}"
                 android:textSize="14sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textViewPostNumber"
+                app:layout_constraintBaseline_toBaselineOf="@+id/postNumber"
                 app:layout_constraintEnd_toEndOf="@+id/textView9"
                 app:layout_constraintStart_toStartOf="@+id/textView9"
                 tools:text="34" />
 
             <TextView
-                android:id="@+id/textViewPostNumber"
+                android:id="@+id/postNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/postNumber"
+                android:text="@{@string/postNumber(data.info.postNumber)}"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/textView10"
                 app:layout_constraintStart_toStartOf="@+id/textView10"
                 app:layout_constraintTop_toBottomOf="@+id/avatar"
+                app:layout_constraintVertical_bias="0.29000002"
                 tools:text="67" />
 
             <View
@@ -136,7 +138,7 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@color/backgroundColor"
-                app:layout_constraintBottom_toTopOf="@+id/textViewAttentionNumber"
+                app:layout_constraintBottom_toTopOf="@+id/attentionNumber"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/avatar" />
@@ -148,7 +150,7 @@
                 android:layout_marginEnd="8dp"
                 android:text="@string/mine_personal_space"
                 android:textSize="@dimen/smallPlusFont"
-                app:layout_constraintBottom_toTopOf="@+id/textViewFansNumber"
+                app:layout_constraintBottom_toTopOf="@+id/fansNumber"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/avatar"
@@ -171,7 +173,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/historyLayout"
                 android:layout_width="0dp"
-                android:layout_height="45dp"
+                android:layout_height="35dp"
                 android:background="@color/foregroundColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -179,9 +181,9 @@
 
                 <ImageView
                     android:id="@+id/icHistory"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="16dp"
                     android:src="@drawable/ic_history_red_24dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -190,12 +192,12 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textViewHistoryNumber"
+                    android:id="@+id/historyNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:text="@string/historyNumber"
-                    android:textSize="@dimen/smallPlusFont"
+                    android:text="@{@string/historyNumber(data.info.historyNumber)}"
+                    android:textSize="@dimen/smallFont"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -208,7 +210,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:text="@string/browseHistory"
-                    android:textSize="@dimen/middlePlusFont"
+                    android:textSize="@dimen/smallPlusFont"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -218,9 +220,9 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/favoriteLayout"
+                android:id="@+id/myFavoriteLayout"
                 android:layout_width="0dp"
-                android:layout_height="45dp"
+                android:layout_height="35dp"
                 android:layout_marginTop="2dp"
                 android:background="@color/foregroundColor"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -229,9 +231,9 @@
 
                 <ImageView
                     android:id="@+id/icFavorite"
-                    android:layout_width="30dp"
+                    android:layout_width="25dp"
                     android:layout_height="30dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="16dp"
                     android:src="@drawable/ic_favorite_red_24dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -240,12 +242,12 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textViewFavoriteNumber"
+                    android:id="@+id/myFavoriteNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:text="@string/favoriteNumber"
-                    android:textSize="@dimen/smallPlusFont"
+                    android:text="@{@string/favoriteNumber(data.info.myFavoriteNumber)}"
+                    android:textSize="@dimen/smallFont"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -258,7 +260,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:text="@string/myFavorite"
-                    android:textSize="@dimen/middlePlusFont"
+                    android:textSize="@dimen/smallPlusFont"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -268,20 +270,20 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/likeLayout"
+                android:id="@+id/myLikeLayout"
                 android:layout_width="0dp"
-                android:layout_height="45dp"
+                android:layout_height="35dp"
                 android:layout_marginTop="2dp"
                 android:background="@color/foregroundColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/favoriteLayout">
+                app:layout_constraintTop_toBottomOf="@+id/myFavoriteLayout">
 
                 <ImageView
                     android:id="@+id/icLike"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="16dp"
                     android:src="@drawable/ic_like_red_24dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -290,12 +292,12 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textViewLikeNumber"
+                    android:id="@+id/myLikeNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:text="@string/likeNumber"
-                    android:textSize="@dimen/smallPlusFont"
+                    android:text="@{@string/likeNumber(data.info.myLikeNumber)}"
+                    android:textSize="@dimen/smallFont"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -308,7 +310,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:text="@string/myLike"
-                    android:textSize="@dimen/middlePlusFont"
+                    android:textSize="@dimen/smallPlusFont"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -320,7 +322,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/settingLayout"
                 android:layout_width="0dp"
-                android:layout_height="45dp"
+                android:layout_height="35dp"
                 android:layout_marginTop="2dp"
                 android:background="@color/foregroundColor"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -330,9 +332,9 @@
 
                 <ImageView
                     android:id="@+id/icSetting"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="16dp"
                     android:src="@drawable/ic_settings_red_24dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -347,7 +349,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:text="@string/setting"
-                    android:textSize="@dimen/middlePlusFont"
+                    android:textSize="@dimen/smallPlusFont"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -359,12 +361,13 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/infoLayout"
                 android:layout_width="0dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="2dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="24dp"
                 android:background="@color/foregroundColor"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/likeLayout">
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
 
                 <TextView
                     android:id="@+id/textView23"
@@ -372,7 +375,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:text="@string/mine_personal_info"
-                    android:textSize="@dimen/middlePlusFont"
+                    android:textSize="@dimen/smallPlusFont"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -381,15 +384,52 @@
 
                 <ImageView
                     android:id="@+id/imageView4"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_mine_blue_24dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout8"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/foregroundColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/myLikeLayout">
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/setting_chatRoom"
+                    android:textSize="@dimen/smallPlusFont"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/imageView3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_notifications_blue_24dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 

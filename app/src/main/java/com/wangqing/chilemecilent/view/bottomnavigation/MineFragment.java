@@ -15,6 +15,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.bumptech.glide.Glide;
 import com.wangqing.chilemecilent.R;
 import com.wangqing.chilemecilent.databinding.FragmentMineBinding;
 import com.wangqing.chilemecilent.utils.AccountManager;
@@ -45,7 +46,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mine, container, false);
         mineViewModel = new ViewModelProvider(this).get(MineViewModel.class);
-        Log.d(TAG, "onCreateView: " + mineViewModel);
         binding.setData(mineViewModel);
         binding.setLifecycleOwner(requireActivity());
 
@@ -57,13 +57,27 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        MineViewModel mineViewModel = new ViewModelProvider(this).get(MineViewModel.class);
-        Log.d(TAG, "onActivityCreated: " + mineViewModel);
+        mineViewModel.getUserInfoFromServer();
+        initView();
+        setAvatar();
 
+    }
 
-        binding.settingLayout.setOnClickListener(this);
+    /**
+     * 初始化页面
+     */
+    private void initView() {
+        binding.historyLayout.setOnClickListener(this);
+        binding.myFavoriteLayout.setOnClickListener(this);
+        binding.myLikeLayout.setOnClickListener(this);
         binding.infoLayout.setOnClickListener(this);
+        binding.settingLayout.setOnClickListener(this);
+
         binding.buttonSpace.setOnClickListener(this);
+
+        Glide.with(binding.avatar)
+                .load(R.drawable.avatar)
+                .into(binding.avatar);
     }
 
     /**
@@ -86,8 +100,14 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 break;
             default:
                 break;
-
         }
 
     }
+
+    /**
+     * 设置头像
+     */
+    private void setAvatar() {
+    }
+
 }

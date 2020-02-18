@@ -30,7 +30,7 @@
     <string name="post">帖子</string>
     <string name="用户昵称">nickeName</string>
     <string name="uid">uid: %d</string>
-    <string name="attetionNumber">%d</string>
+    <string name="attentionNumber">%d</string>
     <string name="fansNumber">%d</string>
     <string name="postNumber">%d</string>
     <string name="userImageContentDescription">用户头像</string>
@@ -63,7 +63,7 @@
     <string name="post_recommend">综合推荐</string>
     <string name="post_post">发布</string>
     <string name="post_imageView">发帖时选择的图片</string>
-    <string name="edit_nikename">昵称</string>
+    <string name="edit_nikeName">昵称</string>
     <string name="edit_intro">简介</string>
     <string name="edit_avatar">头像</string>
     <string name="edit_space_cover">空间封面</string>
@@ -72,5 +72,10 @@
     <string name="modify_password_password">密码</string>
     <string name="mine_personal_info">个人信息</string>
     <string name="mine_personal_space">个人空间</string>
+    <string name="space_attention_number">%d 关注</string>
+    <string name="space_fans_number">%d 粉丝</string>
+    <string name="space_post_number">%d 帖子</string>
+    <string name="imageview_contentDescription">图片无聊的说明</string>
+    <string name="setting_chatRoom">吃喝聊天室</string>
 
 </resources>

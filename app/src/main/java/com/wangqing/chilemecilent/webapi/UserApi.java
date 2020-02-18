@@ -38,6 +38,7 @@ public interface UserApi {
     @DELETE("oauth/token")
     Call<CommonResult<Object>> revokeToken(@Query("access_token") String accessToken);
 
+    /* 根据手机号查询用户id */
     @GET("api/v1/user/{identifier}")
     Call<CommonResult<Integer>> getUserId(@Path("identifier") String identifier);
 }

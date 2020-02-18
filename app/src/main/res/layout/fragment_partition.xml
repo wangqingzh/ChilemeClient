@@ -16,7 +16,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_marginTop="2dp"
             android:background="@color/foregroundColor"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +53,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout3"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_marginTop="2dp"
             android:background="@color/foregroundColor"
             app:layout_constraintEnd_toEndOf="parent"
@@ -90,7 +90,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout5"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_marginTop="2dp"
             android:background="@color/foregroundColor"
             app:layout_constraintEnd_toEndOf="parent"
@@ -126,7 +126,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout7"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_marginTop="2dp"
             android:background="@color/foregroundColor"
             app:layout_constraintEnd_toEndOf="parent"
@@ -163,7 +163,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout6"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_marginTop="2dp"
             android:background="@color/foregroundColor"
             app:layout_constraintEnd_toEndOf="parent"

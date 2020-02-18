@@ -51,16 +51,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayout3"
+                    android:id="@+id/textInputLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/textInputLayout6"
+                    app:layout_constraintStart_toStartOf="@+id/textInputLayout6"
                     app:layout_constraintTop_toBottomOf="@+id/textInputLayout6"
                     app:layout_constraintVertical_bias="0.0">
 
@@ -68,7 +65,6 @@
                         android:id="@+id/editTextContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@null"
                         android:hint="@string/post_content" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -123,12 +119,13 @@
                     android:id="@+id/buttonSelectImage"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_marginTop="16dp"
                     android:text="@string/post_select_image"
                     android:textSize="36sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView14"
-                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
-                    app:layout_constraintVertical_bias="0.112" />
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
                     android:id="@+id/textView14"
@@ -167,6 +164,7 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/textView15"
                     tools:text="3.50" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 

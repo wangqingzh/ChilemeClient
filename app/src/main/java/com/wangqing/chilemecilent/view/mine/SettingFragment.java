@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.wangqing.chilemecilent.R;
 import com.wangqing.chilemecilent.databinding.FragmentSettingBinding;
+import com.wangqing.chilemecilent.utils.AccountManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,6 +44,12 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        initView(); // 初始化布局
+
+    }
+
+    private void initView() {
         binding.settingPhone.setOnClickListener(this);
         binding.settingModifyPassword.setOnClickListener(this);
         binding.settingAbout.setOnClickListener(this);
@@ -67,11 +74,22 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
                 settingAbout();
                 break;
             case R.id.buttonLogOut:
+                logOut();
+                controller.navigateUp();
                 break;
             default:
                 break;
         }
     }
+
+    /**
+     * 注销事件
+     */
+    private void logOut() {
+        AccountManager accountManager = AccountManager.getInstance(requireActivity().getApplication());
+        accountManager.logOut();
+    }
+
 
     private void settingAbout() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());

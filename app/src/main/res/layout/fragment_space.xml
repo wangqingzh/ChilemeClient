@@ -4,28 +4,107 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.mine.SpaceFragment" >
+    tools:context=".view.mine.SpaceFragment">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageViewCover"
         android:layout_width="0dp"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
+        android:contentDescription="@string/imageview_contentDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars[10]" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/imageViewAvatar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewCover"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageViewCover"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCover"
+        app:layout_constraintVertical_bias="1.0"
+        tools:src="@tools:sample/avatars[1]" />
+
+    <TextView
+        android:id="@+id/nikeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="@dimen/bigPlusFont"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.614"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageViewAvatar"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewCover"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="nikeName" />
+
+    <Button
+        android:id="@+id/buttonEditAttention"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="@string/attention"
+        android:textSize="@dimen/smallPlusFont"
+        app:layout_constraintBottom_toBottomOf="@+id/nikeName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/nikeName"
+        app:layout_constraintTop_toTopOf="@+id/nikeName" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/uid"
+        android:textSize="@dimen/smallFont"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/nikeName"
+        app:layout_constraintTop_toBottomOf="@+id/nikeName"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/attention"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/space_attention_number"
+        android:textSize="@dimen/smallFont"
+        app:layout_constraintBaseline_toBaselineOf="@+id/fans"
+        app:layout_constraintEnd_toStartOf="@+id/fans"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/fans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/space_fans_number"
+        android:textSize="@dimen/smallFont"
+        app:layout_constraintBaseline_toBaselineOf="@+id/post"
+        app:layout_constraintEnd_toStartOf="@+id/post"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/space_post_number"
+        android:textSize="@dimen/smallFont"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/buttonEditAttention"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.441"
-        tools:src="@tools:sample/avatars[1]" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonEditAttention"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
