@@ -12,6 +12,8 @@ import lombok.Data;
 public class UserInfoDto implements Serializable {
     /* 用户id */
     private Integer userId;
+//    /* 用户手机号 */
+//    private String phoneNumber;
     /* 用户昵称 */
     private String nickName;
     /* 用户简介 */

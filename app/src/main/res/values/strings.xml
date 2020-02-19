@@ -77,5 +77,7 @@
     <string name="space_post_number">%d 帖子</string>
     <string name="imageview_contentDescription">图片无聊的说明</string>
     <string name="setting_chatRoom">吃喝聊天室</string>
+    <string name="dialog_positive_button">确定</string>
+    <string name="dialog_negative_button">取消</string>
 
 </resources>

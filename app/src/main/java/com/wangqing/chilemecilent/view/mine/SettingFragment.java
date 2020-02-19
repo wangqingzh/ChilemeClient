@@ -2,29 +2,35 @@ package com.wangqing.chilemecilent.view.mine;
 
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.wangqing.chilemecilent.R;
 import com.wangqing.chilemecilent.databinding.FragmentSettingBinding;
 import com.wangqing.chilemecilent.utils.AccountManager;
+import com.wangqing.chilemecilent.viewmodel.bottomnavigation.MineViewModel;
+import com.wangqing.chilemecilent.viewmodel.mine.SettingViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class SettingFragment extends Fragment implements View.OnClickListener {
-    private FragmentSettingBinding binding;
 
+    private FragmentSettingBinding binding;
+    private SettingViewModel settingViewModel;
     public SettingFragment() {
         // Required empty public constructor
     }
@@ -34,6 +40,8 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_setting, container, false);
+        settingViewModel = new ViewModelProvider(requireActivity()).get(SettingViewModel.class);
+        binding.setData(settingViewModel);
         binding.setLifecycleOwner(requireActivity());
 
         return binding.getRoot();
@@ -66,6 +74,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
         NavController controller = Navigation.findNavController(v);
         switch (v.getId()) {
             case R.id.settingPhone:
+                settingPhone();
                 break;
             case R.id.settingModifyPassword:
                 controller.navigate(R.id.action_settingFragment_to_modifyPasswordFragment);
@@ -80,6 +89,26 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
             default:
                 break;
         }
+    }
+
+    private void settingPhone() {
+        final EditText et = new EditText(requireContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setView(et);
+        builder.setTitle("请输入手机号");
+        builder.setPositiveButton(R.string.dialog_positive_button, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.setNegativeButton(R.string.dialog_negative_button, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.show();
     }
 
     /**
