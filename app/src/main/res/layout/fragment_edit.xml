@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="data"
+            type="com.wangqing.chilemecilent.viewmodel.bottomnavigation.MineViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/edit_nikename"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="45dp"
             android:background="@color/foregroundColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,9 +28,9 @@
                 android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="16dp"
                 android:text="@string/edit_nikeName"
-                android:textSize="@dimen/middlePlusFont"
+                android:textSize="@dimen/middleFont"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -36,12 +38,12 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView20"
+                android:id="@+id/nikeName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
-                android:text="TextView"
-                android:textSize="@dimen/middlePlusFont"
+                android:text="@{data.info.nickName}"
+                android:textSize="@dimen/smallPlusFont"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -52,7 +54,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/edit_intro"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="45dp"
             android:layout_marginTop="2dp"
             android:background="@color/foregroundColor"
             app:layout_constraintEnd_toEndOf="parent"
@@ -63,9 +65,9 @@
                 android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="16dp"
                 android:text="@string/edit_intro"
-                android:textSize="@dimen/middlePlusFont"
+                android:textSize="@dimen/middleFont"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -73,11 +75,11 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView21"
+                android:id="@+id/intro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
-                android:text="TextView"
+                android:text="@{data.info.intro}"
                 android:textSize="@dimen/smallFont"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -89,7 +91,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/edit_avatar"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="45dp"
             android:layout_marginTop="2dp"
             android:background="@color/foregroundColor"
             app:layout_constraintEnd_toEndOf="parent"
@@ -100,19 +102,19 @@
                 android:id="@+id/textView18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="16dp"
                 android:text="@string/edit_avatar"
-                android:textSize="@dimen/middlePlusFont"
+                android:textSize="@dimen/middleFont"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/avatar"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_marginEnd="24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -125,7 +127,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/edit_cover"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="45dp"
             android:layout_marginTop="2dp"
             android:background="@color/foregroundColor"
             app:layout_constraintEnd_toEndOf="parent"
@@ -136,9 +138,9 @@
                 android:id="@+id/textView19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="16dp"
                 android:text="@string/edit_space_cover"
-                android:textSize="@dimen/middlePlusFont"
+                android:textSize="@dimen/middleFont"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

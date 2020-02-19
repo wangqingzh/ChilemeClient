@@ -124,6 +124,14 @@ public class MainActivity extends AppCompatActivity implements NavController.OnD
     }
 
 
-
-
+    /**
+     * 增加此方法的重写 避免在fragment中请求权限不回调
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 }

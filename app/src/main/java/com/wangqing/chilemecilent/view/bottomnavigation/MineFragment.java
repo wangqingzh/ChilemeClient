@@ -2,7 +2,6 @@ package com.wangqing.chilemecilent.view.bottomnavigation;
 
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +44,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         }
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mine, container, false);
-        mineViewModel = new ViewModelProvider(this).get(MineViewModel.class);
+        mineViewModel = new ViewModelProvider(requireActivity()).get(MineViewModel.class);
         binding.setData(mineViewModel);
         binding.setLifecycleOwner(requireActivity());
 
