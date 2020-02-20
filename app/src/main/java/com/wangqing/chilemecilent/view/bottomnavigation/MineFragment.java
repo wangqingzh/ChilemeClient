@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -17,7 +18,9 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.bumptech.glide.Glide;
 import com.wangqing.chilemecilent.R;
 import com.wangqing.chilemecilent.databinding.FragmentMineBinding;
+import com.wangqing.chilemecilent.object.dto.UserInfoDto;
 import com.wangqing.chilemecilent.utils.AccountManager;
+import com.wangqing.chilemecilent.utils.AppConfig;
 import com.wangqing.chilemecilent.viewmodel.bottomnavigation.MineViewModel;
 
 /**
@@ -74,9 +77,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
         binding.buttonSpace.setOnClickListener(this);
 
-        Glide.with(binding.avatar)
-                .load(R.drawable.avatar)
-                .into(binding.avatar);
+
     }
 
     /**
@@ -107,6 +108,16 @@ public class MineFragment extends Fragment implements View.OnClickListener {
      * 设置头像
      */
     private void setAvatar() {
+        mineViewModel.getInfo().observe(getViewLifecycleOwner(), new Observer<UserInfoDto>() {
+            @Override
+            public void onChanged(UserInfoDto userInfoDto) {
+                Glide.with(MineFragment.this)
+                        .load(AppConfig.BASE_URL + userInfoDto.getAvatarUrl())
+                        .error(R.drawable.avatar)
+                        .into(binding.avatar);
+            }
+        });
+
     }
 
 }

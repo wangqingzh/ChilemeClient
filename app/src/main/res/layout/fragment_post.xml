@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="data"
+            type="com.wangqing.chilemecilent.viewmodel.partition.PostViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,7 +49,8 @@
                         android:id="@+id/editTextHeadLine"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/post_headline" />
+                        android:hint="@string/post_headline"
+                        android:text="@{data.postDto.headLine}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -65,7 +68,8 @@
                         android:id="@+id/editTextContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/post_content" />
+                        android:hint="@string/post_content"
+                        android:text="@{data.postDto.content}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
@@ -151,11 +155,12 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
-                    android:id="@+id/textViewScore"
+                    android:id="@+id/scoreView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="8dp"
                     android:shadowColor="@color/design_default_color_error"
+                    android:text="@string/post_ratingBar_initScore"
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/middleFont"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView15"
