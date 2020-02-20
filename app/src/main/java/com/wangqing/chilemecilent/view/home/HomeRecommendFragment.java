@@ -63,7 +63,7 @@ public class HomeRecommendFragment extends Fragment {
         FileApi fileApi = RetrofitHandle.getInstance().getRetrofit().create(FileApi.class);
         Map<String, Object> params = new HashMap<>();
         UploadFileDto uploadFileDto = new UploadFileDto(UploadFileDto.EVALUATION_IMAGE, 1234);
-        params.put("upInfo", uploadFileDto);
+        params.put("UP_INFO", uploadFileDto);
         Call<CommonResult<Object>> task = fileApi.uploadFile(params, null);
         task.enqueue(new Callback<CommonResult<Object>>() {
             @Override

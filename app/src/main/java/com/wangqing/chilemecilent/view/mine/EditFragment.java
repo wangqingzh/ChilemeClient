@@ -29,10 +29,18 @@ import android.widget.Toast;
 
 import com.wangqing.chilemecilent.R;
 import com.wangqing.chilemecilent.databinding.FragmentEditBinding;
+import com.wangqing.chilemecilent.object.dto.UploadFileDto;
+import com.wangqing.chilemecilent.utils.AppConfig;
 import com.wangqing.chilemecilent.viewmodel.bottomnavigation.MineViewModel;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -55,7 +63,8 @@ public class EditFragment extends Fragment implements View.OnClickListener {
 
     private static final int TAKE_PHOTO_REQUEST_CODE = 3; // 拍照返回的requestCode
     private static final int SELECT_FROM_ALBUM_REQUEST_CODE = 4; // 选取图片返回的requestCode
-    private static final int CROP_PHOTO_REQUEST_CODE = 5; // 裁剪图片返回的requestCode
+    private static final int CROP_PHOTO_REQUEST_CODE_AVATAR = 5; // 裁剪图片返回的requestCode
+    private static final int CROP_PHOTO_REQUEST_CODE_COVER = 6; // 裁剪图片返回的requestCode
 
     private Uri photoUri = null; // 访问拍照的uri
     private Uri photoOutputUri = null; // 图片最终的输出文件的Uri
@@ -84,12 +93,7 @@ public class EditFragment extends Fragment implements View.OnClickListener {
 
         initView();
 
-        if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            // 申请读写内存卡内容的权限
-            ActivityCompat.requestPermissions(requireActivity(),
-                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_SDCARD_PERMISSION_REQUEST_CODE);
-        }
+
     }
 
     /**
@@ -127,6 +131,8 @@ public class EditFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    // ***********************************点击之后操作 start******************************************
+
     private void editCover() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         builder.setTitle("选择照片");
@@ -134,7 +140,12 @@ public class EditFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
-
+                    case TAKE_PHOTO:
+                        getPermissionForCamera();
+                        break;
+                    case SELECT_PHOTO:
+                        getPermissionForAlbum();
+                        break;
                 }
             }
         });
@@ -149,15 +160,10 @@ public class EditFragment extends Fragment implements View.OnClickListener {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case TAKE_PHOTO:
-                        if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CAMERA)
-                                != PackageManager.PERMISSION_GRANTED) {
-                            requestPermissions(new String[]{Manifest.permission.CAMERA}, TAKE_PHOTO_PERMISSION_REQUEST_CODE);
-                        } else {
-                            startCamera();
-                        }
+                        getPermissionForCamera();
                         break;
                     case SELECT_PHOTO:
-                        selectFromAlbum();
+                        getPermissionForAlbum();
                         break;
                 }
             }
@@ -207,6 +213,33 @@ public class EditFragment extends Fragment implements View.OnClickListener {
         builder.show();
     }
 
+    // ***********************************点击之后操作 end******************************************
+
+    /**
+     * 为相机获得权限
+     */
+    private void getPermissionForCamera() {
+        if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            requestPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, TAKE_PHOTO_PERMISSION_REQUEST_CODE);
+        } else {
+            startCamera();
+        }
+    }
+
+    private void getPermissionForAlbum() {
+        if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            // 申请读写内存卡内容的权限
+            ActivityCompat.requestPermissions(requireActivity(),
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_SDCARD_PERMISSION_REQUEST_CODE);
+        } else {
+            selectFromAlbum();
+        }
+    }
+
     /**
      * 启动相机
      */
@@ -230,7 +263,7 @@ public class EditFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    private void selectFromAlbum(){
+    private void selectFromAlbum() {
         // 打开系统图库
         Intent selectFromAlbumIntent = new Intent(Intent.ACTION_GET_CONTENT);
         // 设置数据类型为图片类型
@@ -240,9 +273,10 @@ public class EditFragment extends Fragment implements View.OnClickListener {
 
     /**
      * 裁剪图片
+     *
      * @param inputUri
      */
-    public void cropPhoto(Uri inputUri) {
+    public void cropPhoto(Uri inputUri, boolean flag) {
         // 调用系统裁剪图片的action
         Intent cropPhotoIntent = new Intent("com.android.camera.action.CROP");
         // 设置数据 Uri 和 类型
@@ -252,7 +286,12 @@ public class EditFragment extends Fragment implements View.OnClickListener {
         // 设置图片的最终输出目录
         cropPhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT,
                 photoOutputUri = Uri.parse("file:////sdcard/image_output.jpg"));
-        startActivityForResult(cropPhotoIntent, CROP_PHOTO_REQUEST_CODE);
+        if (flag) {
+            startActivityForResult(cropPhotoIntent, CROP_PHOTO_REQUEST_CODE_AVATAR);
+        } else {
+            startActivityForResult(cropPhotoIntent, CROP_PHOTO_REQUEST_CODE_COVER);
+        }
+
     }
 
 
@@ -268,17 +307,19 @@ public class EditFragment extends Fragment implements View.OnClickListener {
         //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case TAKE_PHOTO_PERMISSION_REQUEST_CODE:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(requireContext(), "授权成功，即将打开相机！", Toast.LENGTH_SHORT).show();
                     startCamera();
                 } else {
-                    Toast.makeText(requireContext(), "请授予相机权限！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), "请到设置中授予相机与外部存储权限！", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case WRITE_SDCARD_PERMISSION_REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(requireContext(), "授权成功，即将打开相册！", Toast.LENGTH_SHORT).show();
+                    selectFromAlbum();
                 } else {
-                    Toast.makeText(requireContext(), "读写内存卡内容权限被拒绝", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), "请到设置中授予外部存储权限！", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
@@ -299,22 +340,63 @@ public class EditFragment extends Fragment implements View.OnClickListener {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case TAKE_PHOTO_REQUEST_CODE:
-                    cropPhoto(photoUri);
+                    cropPhoto(photoUri, true);
                     break;
                 case SELECT_FROM_ALBUM_REQUEST_CODE:
-                    cropPhoto(data.getData());
+                    cropPhoto(data.getData(), false);
                     break;
-                case CROP_PHOTO_REQUEST_CODE:
-                    File file = new File(photoOutputUri.getPath());
-                    if (file.exists()) {
-                        // 读取文件时需要 读取sd卡 权限
-                        Bitmap bitmap = BitmapFactory.decodeFile(photoOutputUri.getPath());
-                        binding.avatar.setImageBitmap(bitmap);
-                    } else {
-                        Toast.makeText(requireContext(), "找不到照片", Toast.LENGTH_SHORT).show();
-                    }
+                case CROP_PHOTO_REQUEST_CODE_AVATAR: // 对头像进行处理
+                    handleAvatar();
+                    break;
+                case CROP_PHOTO_REQUEST_CODE_COVER: // 对封面进行处理
+                    handleCover();
                     break;
             }
         }
     }
+
+    /**
+     * 对头像进行处理
+     */
+    private void handleAvatar(){
+        File file = new File(photoOutputUri.getPath());
+        if (file.exists()) {
+            // 读取文件时需要 读取sd卡 权限
+            Bitmap bitmap = BitmapFactory.decodeFile(photoOutputUri.getPath());
+            binding.avatar.setImageBitmap(bitmap);
+        } else {
+            Toast.makeText(requireContext(), "找不到照片", Toast.LENGTH_SHORT).show();
+        }
+
+        Map<String, Object> params = new HashMap<>();
+        params.put(AppConfig.UP_INFO, new UploadFileDto(UploadFileDto.USER_AVATAR, mineViewModel.getAccountManager().getUser().getUserId()));
+
+        MediaType mediaType = MediaType.parse("/image/jpg");
+        RequestBody fileBody = RequestBody.create(mediaType, file);
+        MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), fileBody);
+
+        mineViewModel.uploadFile(params, part);
+    }
+
+    /**
+     * 对封面进行处理
+     */
+    private void handleCover(){
+        File file = new File(photoOutputUri.getPath());
+        if (!file.exists()){
+            Toast.makeText(requireContext(), "找不到照片", Toast.LENGTH_SHORT).show();
+        }
+
+        Map<String, Object> params = new HashMap<>();
+        params.put(AppConfig.UP_INFO, new UploadFileDto(UploadFileDto.USER_COVER, mineViewModel.getAccountManager().getUser().getUserId()));
+
+        MediaType mediaType = MediaType.parse("/image/jpg");
+        RequestBody fileBody = RequestBody.create(mediaType, file);
+        MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), fileBody);
+
+        mineViewModel.uploadFile(params, part);
+    }
+
+
+
 }

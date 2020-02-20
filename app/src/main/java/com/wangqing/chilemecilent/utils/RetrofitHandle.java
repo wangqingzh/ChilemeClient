@@ -24,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * 并在本单例中进行一些相关配置
  */
 public class RetrofitHandle {
-    public static final String BASE_URL = "https://192.168.2.225:8443/";
+    public static final String BASE_URL = AppConfig.BASE_URL;
     public static final int CONNECT_TIME_OUT = 10000;
     private Retrofit mRetrofit;
 
