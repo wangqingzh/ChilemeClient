@@ -6,6 +6,10 @@
         android:icon="@drawable/ic_home_blue_24dp"
         android:title="@string/home" />
     <item
+        android:id="@+id/evaluateFragment"
+        android:icon="@drawable/school"
+        android:title="@string/evaluate" />
+    <item
         android:id="@+id/partitionFragment"
         android:icon="@drawable/ic_partition_blue_24dp"
         android:title="@string/partition" />

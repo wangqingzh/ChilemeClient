@@ -36,8 +36,8 @@
     <fragment
         android:id="@+id/partitionFragment"
         android:name="com.wangqing.chilemecilent.view.bottomnavigation.PartitionFragment"
-        android:label="分区"
-        tools:layout="@layout/fragment_partition" >
+        android:label="推帖"
+        tools:layout="@layout/fragment_partition">
         <action
             android:id="@+id/action_partitionFragment_to_postFragment"
             app:destination="@id/postFragment" />
@@ -90,7 +90,11 @@
         android:id="@+id/postFragment"
         android:name="com.wangqing.chilemecilent.view.partition.PostFragment"
         android:label="发帖"
-        tools:layout="@layout/fragment_post" />
+        tools:layout="@layout/fragment_post" >
+        <action
+            android:id="@+id/action_postFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
     <fragment
         android:id="@+id/modifyPasswordFragment"
         android:name="com.wangqing.chilemecilent.view.mine.ModifyPasswordFragment"
@@ -111,6 +115,11 @@
     <fragment
         android:id="@+id/postDetailFragment"
         android:name="com.wangqing.chilemecilent.view.partition.PostDetailFragment"
-        android:label="fragment_post_detail"
+        android:label="详情"
         tools:layout="@layout/fragment_post_detail" />
+    <fragment
+        android:id="@+id/evaluateFragment"
+        android:name="com.wangqing.chilemecilent.view.bottomnavigation.EvaluateFragment"
+        android:label="校园"
+        tools:layout="@layout/fragment_evaluate" />
 </navigation>

@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavController.OnD
         navController = Navigation.findNavController(this, R.id.fragment);
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.homeFragment, R.id.partitionFragment, R.id.messageFragment, R.id.mineFragment
+                R.id.homeFragment,R.id.evaluateFragment, R.id.partitionFragment, R.id.messageFragment, R.id.mineFragment
         ).build();
 
         // 设置顶部actionBar
@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavController.OnD
             case R.id.messageFragment:
             case R.id.mineFragment:
             case R.id.signInFragment:
+            case R.id.evaluateFragment:
                 bottomNavigationView.setVisibility(View.VISIBLE);
                 break;
             default:
