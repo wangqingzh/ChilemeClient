@@ -6,14 +6,14 @@
     <data>
         <variable
             name="data"
-            type="com.wangqing.chilemecilent.viewmodel.partition.PostViewModel" />
+            type="com.wangqing.chilemecilent.viewmodel.foodRec.FoodRecPostViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/foregroundColor"
-        tools:context=".view.partition.PostFragment">
+        tools:context=".view.foodrec.FoodRecPostFragment">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"

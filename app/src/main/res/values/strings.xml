@@ -4,7 +4,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">首页</string>
-    <string name="partition">推帖</string>
+    <string name="foodRec">推帖</string>
     <string name="message">消息</string>
     <string name="mine">我的</string>
     <string name="loginUserNameHint">请输入手机号</string>

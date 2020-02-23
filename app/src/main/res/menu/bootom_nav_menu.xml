@@ -10,9 +10,9 @@
         android:icon="@drawable/school"
         android:title="@string/evaluate" />
     <item
-        android:id="@+id/partitionFragment"
+        android:id="@+id/foodRecFragment"
         android:icon="@drawable/ic_partition_blue_24dp"
-        android:title="@string/partition" />
+        android:title="@string/foodRec" />
     <item
         android:id="@+id/messageFragment"
         android:icon="@drawable/ic_message_blue_24dp"

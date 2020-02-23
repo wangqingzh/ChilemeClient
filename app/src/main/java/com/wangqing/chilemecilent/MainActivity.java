@@ -6,7 +6,6 @@ import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,16 +19,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.security.SecureRandom;
-import java.security.cert.X509Certificate;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 
 public class MainActivity extends AppCompatActivity implements NavController.OnDestinationChangedListener {
 
@@ -45,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavController.OnD
         navController = Navigation.findNavController(this, R.id.fragment);
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.homeFragment,R.id.evaluateFragment, R.id.partitionFragment, R.id.messageFragment, R.id.mineFragment
+                R.id.homeFragment,R.id.evaluateFragment, R.id.foodRecFragment, R.id.messageFragment, R.id.mineFragment
         ).build();
 
         // 设置顶部actionBar
@@ -90,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavController.OnD
     public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
         switch (destination.getId()) {
             case R.id.homeFragment:
-            case R.id.partitionFragment:
+            case R.id.foodRecFragment:
             case R.id.messageFragment:
             case R.id.mineFragment:
             case R.id.signInFragment:

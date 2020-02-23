@@ -32,6 +32,4 @@ public class UserInfoDto implements Serializable {
     private Integer historyNumber;
     /* 收藏数 */
     private Integer myFavoriteNumber;
-    /* 点赞数 */
-    private Integer myLikeNumber;
 }

@@ -71,7 +71,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private void initView() {
         binding.historyLayout.setOnClickListener(this);
         binding.myFavoriteLayout.setOnClickListener(this);
-        binding.myLikeLayout.setOnClickListener(this);
         binding.infoLayout.setOnClickListener(this);
         binding.settingLayout.setOnClickListener(this);
 

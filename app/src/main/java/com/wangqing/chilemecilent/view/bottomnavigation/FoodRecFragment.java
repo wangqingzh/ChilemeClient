@@ -14,16 +14,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wangqing.chilemecilent.R;
-import com.wangqing.chilemecilent.databinding.FragmentPartitionBinding;
+import com.wangqing.chilemecilent.databinding.FragmentFoodRecBinding;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PartitionFragment extends Fragment implements View.OnClickListener {
+public class FoodRecFragment extends Fragment implements View.OnClickListener {
 
-    private FragmentPartitionBinding binding;
+    private FragmentFoodRecBinding binding;
 
-    public PartitionFragment() {
+    public FoodRecFragment() {
         // Required empty public constructor
     }
 
@@ -32,7 +32,7 @@ public class PartitionFragment extends Fragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_partition, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_food_rec, container, false);
         binding.setLifecycleOwner(requireActivity());
 
         return binding.getRoot();
@@ -59,7 +59,7 @@ public class PartitionFragment extends Fragment implements View.OnClickListener 
         NavController controller = Navigation.findNavController(v);
         switch (v.getId()) {
             case R.id.floatingActionButton:
-                controller.navigate(R.id.action_partitionFragment_to_postFragment);
+                controller.navigate(R.id.action_foodRecFragment_to_foodRecPostFragment);
                 break;
             default:
                 break;

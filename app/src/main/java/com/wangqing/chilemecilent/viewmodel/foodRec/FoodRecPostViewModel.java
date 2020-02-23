@@ -1,4 +1,4 @@
-package com.wangqing.chilemecilent.viewmodel.partition;
+package com.wangqing.chilemecilent.viewmodel.foodRec;
 
 import android.app.Application;
 import android.util.Log;
@@ -28,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PostViewModel extends AndroidViewModel {
+public class FoodRecPostViewModel extends AndroidViewModel {
 
     AccountManager accountManager;  // 用户管理
 
@@ -39,7 +39,7 @@ public class PostViewModel extends AndroidViewModel {
     private MutableLiveData<File> image; // 选择的图片文件路径
 
 
-    public PostViewModel(@NonNull Application application) {
+    public FoodRecPostViewModel(@NonNull Application application) {
         super(application);
         accountManager = AccountManager.getInstance(application);
     }

@@ -1,4 +1,4 @@
-package com.wangqing.chilemecilent.view.partition;
+package com.wangqing.chilemecilent.view.foodrec;
 
 
 import android.Manifest;
@@ -12,6 +12,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.RatingBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,45 +33,26 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.provider.DocumentsContract;
-import android.provider.MediaStore;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.RatingBar;
-import android.widget.Toast;
-
 import com.wangqing.chilemecilent.R;
-import com.wangqing.chilemecilent.databinding.FragmentPostBinding;
-import com.wangqing.chilemecilent.object.dto.UploadFileDto;
+import com.wangqing.chilemecilent.databinding.FragmentFoodRecPostBinding;
 import com.wangqing.chilemecilent.utils.AccountManager;
-import com.wangqing.chilemecilent.utils.AppConfig;
-import com.wangqing.chilemecilent.viewmodel.partition.PostViewModel;
+import com.wangqing.chilemecilent.viewmodel.foodRec.FoodRecPostViewModel;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 
 import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PostFragment extends Fragment implements AdapterView.OnItemSelectedListener,
+public class FoodRecPostFragment extends Fragment implements AdapterView.OnItemSelectedListener,
         RatingBar.OnRatingBarChangeListener, View.OnClickListener {
     private final String TAG = this.getClass().toString();
 
 
-    private FragmentPostBinding binding;
-    private PostViewModel postViewModel;
+    private FragmentFoodRecPostBinding binding;
+    private FoodRecPostViewModel foodRecPostViewModel;
 
 
     private static final int TAKE_PHOTO = 0; // 拍照
@@ -77,7 +67,7 @@ public class PostFragment extends Fragment implements AdapterView.OnItemSelected
 
     private Uri photoUri = null; // 访问拍照的uri
 
-    public PostFragment() {
+    public FoodRecPostFragment() {
         // Required empty public constructor
     }
 
@@ -85,19 +75,19 @@ public class PostFragment extends Fragment implements AdapterView.OnItemSelected
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        postViewModel = new ViewModelProvider(this).get(PostViewModel.class);
+        foodRecPostViewModel = new ViewModelProvider(this).get(FoodRecPostViewModel.class);
 
         if (!AccountManager.getInstance(requireActivity().getApplication()).isOnline()){
             NavController controller = NavHostFragment.findNavController(this);
-            controller.navigate(R.id.action_postFragment_to_signInFragment);
+            controller.navigate(R.id.action_foodRecPostFragment_to_signInFragment);
         }
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_post, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_food_rec_post, container, false);
 
 
 
         binding.setLifecycleOwner(requireActivity());
-        binding.setData(postViewModel);
+        binding.setData(foodRecPostViewModel);
 
         return binding.getRoot();
         // Inflate the layout for this fragment
@@ -138,7 +128,7 @@ public class PostFragment extends Fragment implements AdapterView.OnItemSelected
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        postViewModel.getPartitionId().setValue(position);
+        foodRecPostViewModel.getPartitionId().setValue(position);
     }
 
     @Override
@@ -156,7 +146,7 @@ public class PostFragment extends Fragment implements AdapterView.OnItemSelected
     @Override
     public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
         binding.scoreView.setText(String.valueOf(rating));
-        postViewModel.getRecommendScore().setValue(rating);
+        foodRecPostViewModel.getRecommendScore().setValue(rating);
     }
 
     /**
@@ -185,7 +175,7 @@ public class PostFragment extends Fragment implements AdapterView.OnItemSelected
                 builder.show();
                 break;
             case R.id.buttonPost: // 发布 先传递信息 图片再发
-                postViewModel.addPost();
+                foodRecPostViewModel.addPost();
                 break;
         }
     }
@@ -330,7 +320,7 @@ public class PostFragment extends Fragment implements AdapterView.OnItemSelected
             }
         }
 
-        postViewModel.getImage().setValue(file);
+        foodRecPostViewModel.getImage().setValue(file);
 
     }
 
