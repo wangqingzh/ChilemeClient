@@ -59,7 +59,7 @@
     <string name="post_headline">标题</string>
     <string name="post_content">内容</string>
     <string name="post_select_image">+</string>
-    <string name="post_partition">分区：</string>
+    <string name="food_rec_classify">分类：</string>
     <string name="post_recommend">综合推荐：</string>
     <string name="post_post">发布</string>
     <string name="post_imageView">发帖时选择的图片</string>

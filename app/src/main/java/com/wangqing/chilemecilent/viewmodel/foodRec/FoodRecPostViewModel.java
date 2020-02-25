@@ -9,7 +9,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.wangqing.chilemecilent.object.ao.CommonResult;
-import com.wangqing.chilemecilent.object.dto.PostDto;
+import com.wangqing.chilemecilent.object.dto.FoodRecPostDto;
 import com.wangqing.chilemecilent.object.dto.UploadFileDto;
 import com.wangqing.chilemecilent.utils.AccountManager;
 import com.wangqing.chilemecilent.utils.AppConfig;
@@ -34,7 +34,7 @@ public class FoodRecPostViewModel extends AndroidViewModel {
 
     private MutableLiveData<String> headLine;  // 标题
     private MutableLiveData<String> content; // 内容
-    private MutableLiveData<Integer> partitionId; // 分区id
+    private MutableLiveData<Integer> classifyId; // 分区id
     private MutableLiveData<Float> recommendScore; // 推荐分数
     private MutableLiveData<File> image; // 选择的图片文件路径
 
@@ -51,11 +51,11 @@ public class FoodRecPostViewModel extends AndroidViewModel {
         return recommendScore;
     }
 
-    public MutableLiveData<Integer> getPartitionId() {
-        if (partitionId == null){
-            partitionId = new MutableLiveData<>();
+    public MutableLiveData<Integer> getClassifyId() {
+        if (classifyId == null){
+            classifyId = new MutableLiveData<>();
         }
-        return partitionId;
+        return classifyId;
     }
 
     public MutableLiveData<String> getContent() {
@@ -84,14 +84,14 @@ public class FoodRecPostViewModel extends AndroidViewModel {
      */
     public void addPost(){
         PostApi postApi = RetrofitHandle.getInstance().getRetrofit().create(PostApi.class);
-        PostDto postDto = new PostDto();
-        postDto.setHeadLine(getHeadLine().getValue());
-        postDto.setContent(getContent().getValue());
-        postDto.setPartitionId(getPartitionId().getValue());
-        postDto.setRecommendScore(getRecommendScore().getValue());
-        postDto.setPostUserId(accountManager.getUser().getUserId());
+        FoodRecPostDto foodRecPostDto = new FoodRecPostDto();
+        foodRecPostDto.setHeadline(getHeadLine().getValue());
+        foodRecPostDto.setContent(getContent().getValue());
+        foodRecPostDto.setClassifyId(getClassifyId().getValue());
+        foodRecPostDto.setRecommendScore(getRecommendScore().getValue());
+        foodRecPostDto.setPostUserId(accountManager.getUser().getUserId());
 
-        Call<CommonResult<Integer>> task = postApi.addPost(postDto, accountManager.getToken());
+        Call<CommonResult<Integer>> task = postApi.addPost(foodRecPostDto, accountManager.getToken());
         task.enqueue(new Callback<CommonResult<Integer>>() {
             @Override
             public void onResponse(Call<CommonResult<Integer>> call, Response<CommonResult<Integer>> response) {

@@ -8,13 +8,16 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.wangqing.chilemecilent.R;
 import com.wangqing.chilemecilent.databinding.FragmentFoodRecBinding;
+import com.wangqing.chilemecilent.utils.AccountManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,7 +62,12 @@ public class FoodRecFragment extends Fragment implements View.OnClickListener {
         NavController controller = Navigation.findNavController(v);
         switch (v.getId()) {
             case R.id.floatingActionButton:
-                controller.navigate(R.id.action_foodRecFragment_to_foodRecPostFragment);
+                if (!AccountManager.getInstance(requireActivity().getApplication()).isOnline()) {
+                    Toast.makeText(requireContext(), "请先登录", Toast.LENGTH_SHORT).show();
+                    controller.navigate(R.id.action_foodRecFragment_to_signInFragment);
+                } else {
+                    controller.navigate(R.id.action_foodRecFragment_to_foodRecPostFragment);
+                }
                 break;
             default:
                 break;

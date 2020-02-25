@@ -137,7 +137,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="@string/post_partition"
+                    android:text="@string/food_rec_classify"
                     android:textSize="@dimen/smallFont"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView15"

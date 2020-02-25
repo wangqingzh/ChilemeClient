@@ -30,12 +30,9 @@ import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.wangqing.chilemecilent.R;
 import com.wangqing.chilemecilent.databinding.FragmentFoodRecPostBinding;
-import com.wangqing.chilemecilent.utils.AccountManager;
 import com.wangqing.chilemecilent.viewmodel.foodRec.FoodRecPostViewModel;
 
 import java.io.File;
@@ -76,11 +73,6 @@ public class FoodRecPostFragment extends Fragment implements AdapterView.OnItemS
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         foodRecPostViewModel = new ViewModelProvider(this).get(FoodRecPostViewModel.class);
-
-        if (!AccountManager.getInstance(requireActivity().getApplication()).isOnline()){
-            NavController controller = NavHostFragment.findNavController(this);
-            controller.navigate(R.id.action_foodRecPostFragment_to_signInFragment);
-        }
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_food_rec_post, container, false);
 
@@ -128,7 +120,7 @@ public class FoodRecPostFragment extends Fragment implements AdapterView.OnItemS
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        foodRecPostViewModel.getPartitionId().setValue(position);
+        foodRecPostViewModel.getClassifyId().setValue(position);
     }
 
     @Override
