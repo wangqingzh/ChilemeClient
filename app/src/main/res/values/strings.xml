@@ -84,5 +84,6 @@
     <string name="mine_post_number">%d 帖子</string>
     <string name="post_ratingBar_initScore">0.0</string>
     <string name="evaluate">校园</string>
+    <string name="doityourself">自己做</string>
 
 </resources>

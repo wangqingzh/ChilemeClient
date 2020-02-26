@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/postUserAvatar"
+        android:id="@+id/userAvatar"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="12dp"
@@ -23,16 +23,16 @@
         app:srcCompat="@drawable/avatar" />
 
     <TextView
-        android:id="@+id/postUserName"
+        android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="zhangsan"
+        android:text="null"
         android:textSize="@dimen/smallPlusFont"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/postUserAvatar"
-        app:layout_constraintTop_toTopOf="@+id/postUserAvatar" />
+        app:layout_constraintStart_toEndOf="@+id/userAvatar"
+        app:layout_constraintTop_toTopOf="@+id/userAvatar" />
 
     <TextView
         android:id="@+id/postTime"
@@ -42,8 +42,8 @@
         android:text="2020 12 34"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/postUserAvatar"
-        app:layout_constraintTop_toTopOf="@+id/postUserAvatar" />
+        app:layout_constraintStart_toEndOf="@+id/userAvatar"
+        app:layout_constraintTop_toTopOf="@+id/userAvatar" />
 
     <TextView
         android:id="@+id/postHeadline"
@@ -54,8 +54,8 @@
         android:textSize="@dimen/smallFont"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/postUserAvatar"
-        app:layout_constraintTop_toBottomOf="@+id/postUserAvatar" />
+        app:layout_constraintStart_toStartOf="@+id/userAvatar"
+        app:layout_constraintTop_toBottomOf="@+id/userAvatar" />
 
     <ImageView
         android:id="@+id/postImage"
@@ -63,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="12dp"
+        android:contentDescription="@string/imageview_contentDescription"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -71,73 +72,49 @@
         tools:srcCompat="@tools:sample/avatars[0]" />
 
     <ImageView
-        android:id="@+id/comment"
+        android:id="@+id/commentImage"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView26"
+        android:contentDescription="@string/imageview_contentDescription"
+        app:layout_constraintBottom_toBottomOf="@+id/likeImage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toEndOf="@+id/like"
-        app:layout_constraintTop_toTopOf="@+id/textView26"
+        app:layout_constraintStart_toEndOf="@+id/likeNumber"
+        app:layout_constraintTop_toTopOf="@+id/likeImage"
         app:srcCompat="@drawable/comment" />
 
     <ImageView
-        android:id="@+id/favorite"
+        android:id="@+id/likeImage"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:contentDescription="@string/imageview_contentDescription"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.21"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/postImage"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_favorite_black_24dp" />
-
-    <ImageView
-        android:id="@+id/like"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView21"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.29"
-        app:layout_constraintStart_toEndOf="@+id/favorite"
-        app:layout_constraintTop_toTopOf="@+id/textView21"
         app:srcCompat="@drawable/ic_thumb_up_black_24dp" />
 
     <TextView
-        android:id="@+id/textView20"
+        android:id="@+id/likeNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="1"
-        app:layout_constraintBottom_toBottomOf="@+id/favorite"
-        app:layout_constraintEnd_toStartOf="@+id/like"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/favorite"
-        app:layout_constraintTop_toTopOf="@+id/favorite" />
+        app:layout_constraintBottom_toBottomOf="@+id/likeImage"
+        app:layout_constraintStart_toEndOf="@+id/likeImage"
+        app:layout_constraintTop_toTopOf="@+id/likeImage"
+        tools:text="65" />
 
     <TextView
-        android:id="@+id/textView21"
+        android:id="@+id/commentNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView20"
-        app:layout_constraintEnd_toStartOf="@+id/comment"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/like" />
-
-    <TextView
-        android:id="@+id/textView26"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="3"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView21"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/comment" />
+        app:layout_constraintBottom_toBottomOf="@+id/commentImage"
+        app:layout_constraintStart_toEndOf="@+id/commentImage"
+        app:layout_constraintTop_toTopOf="@+id/commentImage"
+        tools:text="56" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

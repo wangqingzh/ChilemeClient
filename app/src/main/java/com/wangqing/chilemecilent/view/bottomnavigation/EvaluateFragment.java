@@ -26,7 +26,7 @@ public class EvaluateFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.postbrowser_holder, container, false);
+        return inflater.inflate(R.layout.food_rec_browser_holder, container, false);
     }
 
 }

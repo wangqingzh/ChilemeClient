@@ -14,7 +14,7 @@
         tools:context=".view.bottomnavigation.FoodRecFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout2"
+            android:id="@+id/compusRes"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginTop="2dp"
@@ -51,20 +51,21 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout3"
+            android:id="@+id/physicalStore"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginTop="2dp"
             android:background="@color/foregroundColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+            app:layout_constraintTop_toBottomOf="@+id/compusRes">
 
             <ImageView
                 android:id="@+id/ic_physicalStore"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="16dp"
+                android:contentDescription="@string/imageview_contentDescription"
                 android:src="@drawable/ic_favorite_red_24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -88,20 +89,21 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout5"
+            android:id="@+id/onlineShopping"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginTop="2dp"
             android:background="@color/foregroundColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+            app:layout_constraintTop_toBottomOf="@+id/physicalStore">
 
             <ImageView
                 android:id="@+id/ic_onlineShopping"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="16dp"
+                android:contentDescription="@string/imageview_contentDescription"
                 android:src="@drawable/ic_favorite_red_24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -124,7 +126,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout7"
+            android:id="@+id/takeOut"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginTop="2dp"
@@ -132,13 +134,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
+            app:layout_constraintTop_toBottomOf="@+id/onlineShopping">
 
             <ImageView
                 android:id="@+id/ic_takeout"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="16dp"
+                android:contentDescription="@string/imageview_contentDescription"
                 android:src="@drawable/ic_favorite_red_24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -161,7 +164,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout6"
+            android:id="@+id/doItYourself"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginTop="2dp"
@@ -169,13 +172,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
+            app:layout_constraintTop_toBottomOf="@+id/takeOut">
 
             <ImageView
                 android:id="@+id/ic_doItYourself"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="16dp"
+                android:contentDescription="@string/imageview_contentDescription"
                 android:src="@drawable/ic_favorite_red_24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -188,7 +192,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:text="自己做"
+                android:text="@string/doityourself"
                 android:textSize="@dimen/bigFont"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -207,7 +211,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.926"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout6"
+            app:layout_constraintTop_toBottomOf="@+id/doItYourself"
             app:layout_constraintVertical_bias="0.649" />
 
 

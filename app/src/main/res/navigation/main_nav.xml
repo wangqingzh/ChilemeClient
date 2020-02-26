@@ -107,8 +107,8 @@
     <fragment
         android:id="@+id/foodRecBrowserFragment"
         android:name="com.wangqing.chilemecilent.view.foodrec.FoodRecBrowserFragment"
-        android:label="fragment_food_rec_browser"
-        tools:layout="@layout/fragment_food_rec_browser" >
+        android:label="浏览"
+        tools:layout="@layout/fragment_food_rec_browser">
         <action
             android:id="@+id/action_foodRecBrowserFragment_to_foodRecDetailFragment"
             app:destination="@id/foodRecDetailFragment" />
@@ -116,6 +116,6 @@
     <fragment
         android:id="@+id/foodRecDetailFragment"
         android:name="com.wangqing.chilemecilent.view.foodrec.FoodRecDetailFragment"
-        android:label="fragment_food_rec_detail"
+        android:label="详情"
         tools:layout="@layout/fragment_food_rec_detail" />
 </navigation>

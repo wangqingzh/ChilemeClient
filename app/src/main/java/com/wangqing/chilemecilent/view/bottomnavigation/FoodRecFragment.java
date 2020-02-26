@@ -24,6 +24,7 @@ import com.wangqing.chilemecilent.utils.AccountManager;
  */
 public class FoodRecFragment extends Fragment implements View.OnClickListener {
 
+
     private FragmentFoodRecBinding binding;
 
     public FoodRecFragment() {
@@ -60,6 +61,7 @@ public class FoodRecFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         NavController controller = Navigation.findNavController(v);
+        Bundle bundle = new Bundle();
         switch (v.getId()) {
             case R.id.floatingActionButton:
                 if (!AccountManager.getInstance(requireActivity().getApplication()).isOnline()) {
@@ -68,6 +70,18 @@ public class FoodRecFragment extends Fragment implements View.OnClickListener {
                 } else {
                     controller.navigate(R.id.action_foodRecFragment_to_foodRecPostFragment);
                 }
+                break;
+            case R.id.compusRes:
+                bundle.putInt("REC_CLASSIFY_ID", 0);
+            case R.id.physicalStore:
+                bundle.putInt("REC_CLASSIFY_ID", 1);
+            case R.id.onlineShopping:
+                bundle.putInt("REC_CLASSIFY_ID", 2);
+            case R.id.takeOut:
+                bundle.putInt("REC_CLASSIFY_ID", 3);
+            case R.id.doItYourself:
+                bundle.putInt("REC_CLASSIFY_ID", 4);
+                controller.navigate(R.id.action_foodRecFragment_to_foodRecBrowserFragment, bundle);
                 break;
             default:
                 break;

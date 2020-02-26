@@ -15,7 +15,7 @@ import com.wangqing.chilemecilent.utils.AccountManager;
 import com.wangqing.chilemecilent.utils.AppConfig;
 import com.wangqing.chilemecilent.utils.RetrofitHandle;
 import com.wangqing.chilemecilent.webapi.FileApi;
-import com.wangqing.chilemecilent.webapi.PostApi;
+import com.wangqing.chilemecilent.webapi.FoodRecApi;
 
 import java.io.File;
 import java.util.HashMap;
@@ -83,7 +83,7 @@ public class FoodRecPostViewModel extends AndroidViewModel {
      * 发布帖子 方法
      */
     public void addPost(){
-        PostApi postApi = RetrofitHandle.getInstance().getRetrofit().create(PostApi.class);
+        FoodRecApi foodRecApi = RetrofitHandle.getInstance().getRetrofit().create(FoodRecApi.class);
         FoodRecPostDto foodRecPostDto = new FoodRecPostDto();
         foodRecPostDto.setHeadline(getHeadLine().getValue());
         foodRecPostDto.setContent(getContent().getValue());
@@ -91,7 +91,7 @@ public class FoodRecPostViewModel extends AndroidViewModel {
         foodRecPostDto.setRecommendScore(getRecommendScore().getValue());
         foodRecPostDto.setPostUserId(accountManager.getUser().getUserId());
 
-        Call<CommonResult<Integer>> task = postApi.addPost(foodRecPostDto, accountManager.getToken());
+        Call<CommonResult<Integer>> task = foodRecApi.addPost(foodRecPostDto, accountManager.getToken());
         task.enqueue(new Callback<CommonResult<Integer>>() {
             @Override
             public void onResponse(Call<CommonResult<Integer>> call, Response<CommonResult<Integer>> response) {
