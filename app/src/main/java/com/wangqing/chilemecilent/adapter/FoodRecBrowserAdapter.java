@@ -9,8 +9,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.wangqing.chilemecilent.R;
 import com.wangqing.chilemecilent.object.dto.FoodRecBrowserDto;
+import com.wangqing.chilemecilent.utils.AppConfig;
+import com.wangqing.chilemecilent.utils.RelativeDateFormat;
 
 import java.util.List;
 
@@ -35,21 +38,31 @@ public class FoodRecBrowserAdapter extends RecyclerView.Adapter<FoodRecBrowserAd
         FoodRecBrowserDto info = foodRecList.get(position);
 
         holder.userName.setText(info.getUserName());
-        holder.postTime.setText(info.getPostTime().toString());
+        holder.postTime.setText(RelativeDateFormat.format(info.getPostTime()));
         holder.postHeadline.setText(info.getPostHeadline());
 
-        holder.likeNumber.setText(info.getLikeNumber());
-        holder.commentNumber.setText(info.getCommentNumber());
+        holder.likeNumber.setText(info.getLikeNumber().toString());
+        holder.commentNumber.setText(info.getCommentNumber().toString());
+
+
+        Glide.with(holder.itemView)
+                .load(AppConfig.BASE_URL + info.getUserAvatar())
+                .into(holder.userAvatar);
 
         if (info.getPostImageUrl() == null){
             holder.postImage.setVisibility(View.GONE);
+        }else {
+            Glide.with(holder.itemView)
+                    .load(AppConfig.BASE_URL + info.getPostImageUrl())
+                    .into(holder.postImage);
         }
 
     }
 
     @Override
     public int getItemCount() {
-        return foodRecList.size();
+
+        return foodRecList != null ? foodRecList.size() : 0;
     }
 
 

@@ -14,6 +14,7 @@ import com.wangqing.chilemecilent.utils.AccountManager;
 import com.wangqing.chilemecilent.utils.RetrofitHandle;
 import com.wangqing.chilemecilent.webapi.FoodRecApi;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -51,7 +52,12 @@ public class FoodRecBrowserViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<CommonResult<List<FoodRecBrowserDto>>> call, Response<CommonResult<List<FoodRecBrowserDto>>> response) {
                 if (response.code() == 200){
-                    foodRecList.setValue(response.body().getData());
+                    if (response.body().getData() == null){
+                        foodRecList.setValue(new ArrayList<>());
+                    }else {
+                        foodRecList.setValue(response.body().getData());
+                    }
+
                 }else {
                     Toast.makeText(getApplication(), "请检查网络", Toast.LENGTH_SHORT).show();
                 }

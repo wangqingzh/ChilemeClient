@@ -50,7 +50,11 @@ public class FoodRecFragment extends Fragment implements View.OnClickListener {
 
 
         binding.floatingActionButton.setOnClickListener(this);
-
+        binding.compusRes.setOnClickListener(this);
+        binding.physicalStore.setOnClickListener(this);
+        binding.onlineShopping.setOnClickListener(this);
+        binding.takeOut.setOnClickListener(this);
+        binding.doItYourself.setOnClickListener(this);
     }
 
     /**
@@ -73,12 +77,20 @@ public class FoodRecFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.compusRes:
                 bundle.putInt("REC_CLASSIFY_ID", 0);
+                controller.navigate(R.id.action_foodRecFragment_to_foodRecBrowserFragment, bundle);
+                break;
             case R.id.physicalStore:
                 bundle.putInt("REC_CLASSIFY_ID", 1);
+                controller.navigate(R.id.action_foodRecFragment_to_foodRecBrowserFragment, bundle);
+                break;
             case R.id.onlineShopping:
                 bundle.putInt("REC_CLASSIFY_ID", 2);
+                controller.navigate(R.id.action_foodRecFragment_to_foodRecBrowserFragment, bundle);
+                break;
             case R.id.takeOut:
                 bundle.putInt("REC_CLASSIFY_ID", 3);
+                controller.navigate(R.id.action_foodRecFragment_to_foodRecBrowserFragment, bundle);
+                break;
             case R.id.doItYourself:
                 bundle.putInt("REC_CLASSIFY_ID", 4);
                 controller.navigate(R.id.action_foodRecFragment_to_foodRecBrowserFragment, bundle);

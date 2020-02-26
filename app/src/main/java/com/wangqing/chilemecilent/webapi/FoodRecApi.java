@@ -10,6 +10,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -19,6 +20,6 @@ public interface FoodRecApi {
     Call<CommonResult<Integer>> addPost(@Body FoodRecPostDto foodRecPostDto, @Query("access_token") String accessToken);
 
     /* 获取美食推荐的帖子 不用登录 */
-    @GET("api/v1/food_rec/browser")
+    @POST("api/v1/food_rec/browser")
     Call<CommonResult<List<FoodRecBrowserDto>>> getFoodRecList(@Body FoodRecBroReqDto foodRecBroReqDto, @Query("access_token") String accessToken);
 }
