@@ -112,7 +112,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             public void onChanged(UserInfoDto userInfoDto) {
                 Glide.with(MineFragment.this)
                         .load(AppConfig.BASE_URL + userInfoDto.getAvatarUrl())
-                        .error(R.drawable.avatar)
+                        .error(R.drawable.avatar_default)
                         .into(binding.avatar);
             }
         });

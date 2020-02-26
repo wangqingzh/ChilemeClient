@@ -32,6 +32,18 @@ public class FoodRecBrowserAdapter extends RecyclerView.Adapter<FoodRecBrowserAd
 
     @Override
     public void onBindViewHolder(@NonNull FoodRecBrowserViewHolder holder, int position) {
+        FoodRecBrowserDto info = foodRecList.get(position);
+
+        holder.userName.setText(info.getUserName());
+        holder.postTime.setText(info.getPostTime().toString());
+        holder.postHeadline.setText(info.getPostHeadline());
+
+        holder.likeNumber.setText(info.getLikeNumber());
+        holder.commentNumber.setText(info.getCommentNumber());
+
+        if (info.getPostImageUrl() == null){
+            holder.postImage.setVisibility(View.GONE);
+        }
 
     }
 
