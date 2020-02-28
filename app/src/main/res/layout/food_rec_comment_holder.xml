@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    android:background="@color/foregroundColor">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/userAvatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/image_view_content_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/avatar_default" />
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        android:textSize="@dimen/smallFont"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/userAvatar"
+        app:layout_constraintTop_toTopOf="@+id/userAvatar"
+        tools:text="userName" />
+
+    <TextView
+        android:id="@+id/floorAndDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="TextView"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/userName"
+        app:layout_constraintTop_toBottomOf="@+id/userName"
+        tools:text="第几楼 | date" />
+
+    <TextView
+        android:id="@+id/comment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="NCHJKWELAJHNFUKVJAEKNVRUIJFGNVIUNSEKJRGLLUJEXRDNGL IUD.RJTFMBGN"
+        android:textSize="@dimen/smallFont"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/floorAndDate"
+        app:layout_constraintTop_toBottomOf="@+id/userAvatar"
+        tools:text="JOIGUJPERARGLJK;FEO;ILVAJMSDILVKJMEOIRVFJKVMESOILJBKGMBRDOITLFHKGBMROITLH" />
+
+    <com.sackcentury.shinebuttonlib.ShineButton
+        android:id="@+id/buttonLike"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="48dp"
+        android:contentDescription="@string/image_view_content_description"
+        android:src="@android:color/darker_gray"
+        app:allow_random_color="false"
+        app:big_shine_color="#FF6666"
+        app:btn_color="@android:color/darker_gray"
+        app:btn_fill_color="#FF6666"
+        app:click_animation_duration="200"
+        app:enable_flashing="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/userAvatar"
+        app:layout_constraintTop_toTopOf="@+id/userAvatar"
+        app:shine_animation_duration="1500"
+        app:shine_count="15"
+        app:shine_distance_multiple="1.5"
+        app:shine_turn_angle="10"
+        app:siShape="@raw/like"
+        app:small_shine_color="#CC9999"
+        app:small_shine_offset_angle="20" />
+
+    <TextView
+        android:id="@+id/reply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="TextView"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/comment"
+        app:layout_constraintTop_toBottomOf="@+id/comment"
+        tools:text="回复" />
+
+    <TextView
+        android:id="@+id/likeNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonLike"
+        app:layout_constraintStart_toEndOf="@+id/buttonLike"
+        app:layout_constraintTop_toTopOf="@+id/buttonLike"
+        tools:text="342" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -64,7 +64,7 @@ public class FoodRecBrowserFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        FoodRecBrowserAdapter adapter = new FoodRecBrowserAdapter();
+        FoodRecBrowserAdapter adapter = new FoodRecBrowserAdapter(requireActivity(), viewModel);
 
         viewModel.getFoodRecList().observe(getViewLifecycleOwner(), new Observer<List<FoodRecBrowserDto>>() {
             @Override

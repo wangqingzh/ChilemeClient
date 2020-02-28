@@ -6,5 +6,10 @@ package com.wangqing.chilemecilent.utils;
 public final class AppConfig {
     public static final String BASE_URL = "https://192.168.2.225:8443/";
     public static final String UP_INFO = "upInfo";
-    public static final String TEST_TAG = "TEST------";
+    public static final String TEST_TAG = "TEST";
+
+    public static final Integer LIKE_TYPE_POST = 0;
+    public static final Integer LIKE_TYPE_COMMENT = 1;
+
+    public static String FOOD_REC_BROWSER_TO_DETAIL_KEY = "FOOD_REC_BROWSER_TO_DETAIL_KEY";
 }

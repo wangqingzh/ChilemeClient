@@ -47,7 +47,6 @@ public class FoodRecPostFragment extends Fragment implements AdapterView.OnItemS
         RatingBar.OnRatingBarChangeListener, View.OnClickListener {
     private final String TAG = this.getClass().toString();
 
-
     private FragmentFoodRecPostBinding binding;
     private FoodRecPostViewModel foodRecPostViewModel;
 

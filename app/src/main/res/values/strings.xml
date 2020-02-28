@@ -75,7 +75,7 @@
     <string name="space_attention_number">%d 关注</string>
     <string name="space_fans_number">%d 粉丝</string>
     <string name="space_post_number">%d 帖子</string>
-    <string name="imageview_contentDescription">图片无聊的说明</string>
+    <string name="image_view_content_description">图片无聊的说明</string>
     <string name="setting_chatRoom">吃喝聊天室</string>
     <string name="dialog_positive_button">确定</string>
     <string name="dialog_negative_button">取消</string>
@@ -85,5 +85,10 @@
     <string name="post_ratingBar_initScore">0.0</string>
     <string name="evaluate">校园</string>
     <string name="doityourself">自己做</string>
+    <string name="attention_button">+关注</string>
+    <string name="comment_number">评论 %d</string>
+    <string name="statistics">%d</string>
+    <string name="food_rec_recommend_score">楼主评分 %.2f</string>
+    <string name="recyclerView_comment_footer">什么都没有 快来评论吧</string>
 
 </resources>

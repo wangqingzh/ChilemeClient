@@ -10,9 +10,11 @@ import androidx.lifecycle.MutableLiveData;
 import com.wangqing.chilemecilent.object.ao.CommonResult;
 import com.wangqing.chilemecilent.object.dto.FoodRecBroReqDto;
 import com.wangqing.chilemecilent.object.dto.FoodRecBrowserDto;
+import com.wangqing.chilemecilent.object.dto.LikeReqDto;
 import com.wangqing.chilemecilent.utils.AccountManager;
 import com.wangqing.chilemecilent.utils.RetrofitHandle;
 import com.wangqing.chilemecilent.webapi.FoodRecApi;
+import com.wangqing.chilemecilent.webapi.LikeFavoriteAttentionApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,10 @@ public class FoodRecBrowserViewModel extends AndroidViewModel {
     public FoodRecBrowserViewModel(@NonNull Application application) {
         super(application);
         accountManager = AccountManager.getInstance(application);
+    }
+
+    public AccountManager getAccountManager() {
+        return accountManager;
     }
 
     public MutableLiveData<List<FoodRecBrowserDto>> getFoodRecList() {
@@ -69,5 +75,23 @@ public class FoodRecBrowserViewModel extends AndroidViewModel {
             }
         });
 
+    }
+
+
+    public void giveALike(LikeReqDto likeReqDto){
+        likeReqDto.setUserId(accountManager.getUser().getUserId());
+        LikeFavoriteAttentionApi likeFavoriteAttentionApi = RetrofitHandle.getInstance().getRetrofit().create(LikeFavoriteAttentionApi.class);
+        Call<CommonResult<Object>> task = likeFavoriteAttentionApi.giveALike(likeReqDto, accountManager.getToken());
+        task.enqueue(new Callback<CommonResult<Object>>() {
+            @Override
+            public void onResponse(Call<CommonResult<Object>> call, Response<CommonResult<Object>> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<CommonResult<Object>> call, Throwable t) {
+
+            }
+        });
     }
 }
