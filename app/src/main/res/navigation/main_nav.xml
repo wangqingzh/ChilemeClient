@@ -124,9 +124,16 @@
         android:id="@+id/foodRecDetailFragment"
         android:name="com.wangqing.chilemecilent.view.foodrec.FoodRecDetailFragment"
         android:label="详情"
-        tools:layout="@layout/fragment_food_rec_detail" />
+        tools:layout="@layout/fragment_food_rec_detail" >
+        <action
+            android:id="@+id/action_foodRecDetailFragment_to_foodRecCommentFragment"
+            app:destination="@id/foodRecCommentFragment" />
+    </fragment>
     <fragment
         android:id="@+id/photoViewFragment"
         android:name="com.wangqing.chilemecilent.view.PhotoViewFragment"
         tools:layout="@layout/fragment_photo_view" />
+    <dialog
+        android:id="@+id/foodRecCommentFragment"
+        android:name="com.wangqing.chilemecilent.view.foodrec.FoodRecCommentFragment" />
 </navigation>

@@ -28,7 +28,7 @@
         app:layout_constraintStart_toStartOf="@+id/imageViewCover"
         app:layout_constraintTop_toTopOf="@+id/imageViewCover"
         app:layout_constraintVertical_bias="1.0"
-        tools:src="@drawable/avatar_default" />
+        tools:src="@drawable/ic_avatar_default" />
 
     <TextView
         android:id="@+id/nikeName"

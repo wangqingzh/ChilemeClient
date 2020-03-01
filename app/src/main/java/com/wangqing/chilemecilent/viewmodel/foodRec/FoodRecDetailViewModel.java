@@ -2,6 +2,7 @@ package com.wangqing.chilemecilent.viewmodel.foodRec;
 
 import android.app.Application;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -9,12 +10,15 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wangqing.chilemecilent.object.ao.CommonResult;
+import com.wangqing.chilemecilent.object.dto.CommentPostDto;
 import com.wangqing.chilemecilent.object.dto.FRDSelDto;
 import com.wangqing.chilemecilent.object.dto.FoodRecDetailDto;
 import com.wangqing.chilemecilent.object.dto.LikeReqDto;
 import com.wangqing.chilemecilent.utils.AccountManager;
 import com.wangqing.chilemecilent.utils.AppConfig;
 import com.wangqing.chilemecilent.utils.RetrofitHandle;
+import com.wangqing.chilemecilent.view.foodrec.FoodRecDetailFragment;
+import com.wangqing.chilemecilent.webapi.CommentApi;
 import com.wangqing.chilemecilent.webapi.FoodRecApi;
 import com.wangqing.chilemecilent.webapi.LikeFavoriteAttentionApi;
 
@@ -25,6 +29,7 @@ import retrofit2.Response;
 public class FoodRecDetailViewModel extends AndroidViewModel {
 
     private MutableLiveData<FoodRecDetailDto> info;
+    private MutableLiveData<String> comment;
 
     private AccountManager accountManager;
 
@@ -61,7 +66,13 @@ public class FoodRecDetailViewModel extends AndroidViewModel {
         this.frdSelDto = frdSelDto;
     }
 
-
+    public MutableLiveData<String> getComment() {
+        if (comment == null){
+            comment = new MutableLiveData<>();
+            comment.setValue("");
+        }
+        return comment;
+    }
 
     /**web api**/
     public void getDetailByFRDSel(){
@@ -125,6 +136,25 @@ public class FoodRecDetailViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<CommonResult<Object>> call, Response<CommonResult<Object>> response) {
 
+            }
+
+            @Override
+            public void onFailure(Call<CommonResult<Object>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void addComment(){
+        CommentApi commentApi = RetrofitHandle.getInstance().getRetrofit().create(CommentApi.class);
+        Call<CommonResult<Object>> task = commentApi.addComment(
+                new CommentPostDto(frdSelDto.getPostId(), getComment().getValue(), frdSelDto.getUserId(), null), accountManager.getToken());
+        task.enqueue(new Callback<CommonResult<Object>>() {
+            @Override
+            public void onResponse(Call<CommonResult<Object>> call, Response<CommonResult<Object>> response) {
+                if (response.code() == 200){
+                    Toast.makeText(getApplication(), "发送成功", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

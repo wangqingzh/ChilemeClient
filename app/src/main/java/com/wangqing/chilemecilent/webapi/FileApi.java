@@ -15,7 +15,7 @@ import retrofit2.http.PartMap;
  * 上下传文件
  */
 public interface FileApi {
-    /* 上传文件接口 type = avatar_default/cover/image   id = userId/postId/evaluationId */
+    /* 上传文件接口 type = ic_avatar_default/cover/image   id = userId/postId/evaluationId */
     @Multipart
     @POST("/file/upload")
     Call<CommonResult<Object>> uploadFile(@PartMap Map<String, Object> params, @Part MultipartBody.Part file);

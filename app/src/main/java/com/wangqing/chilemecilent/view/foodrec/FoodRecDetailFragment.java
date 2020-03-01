@@ -8,6 +8,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.text.TextUtils;
@@ -24,6 +26,7 @@ import com.wangqing.chilemecilent.object.dto.FoodRecDetailDto;
 import com.wangqing.chilemecilent.utils.AppConfig;
 import com.wangqing.chilemecilent.utils.RelativeDateFormat;
 import com.wangqing.chilemecilent.viewmodel.foodRec.FoodRecDetailViewModel;
+import com.wangqing.chilemecilent.widget.InputTextDialog;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,8 +34,9 @@ import com.wangqing.chilemecilent.viewmodel.foodRec.FoodRecDetailViewModel;
 public class FoodRecDetailFragment extends Fragment implements View.OnClickListener{
 
     private FragmentFoodRecDetailBinding binding;
-
     private FoodRecDetailViewModel viewModel;
+
+    private InputTextDialog inputTextDialog;
 
     public FoodRecDetailFragment() {
         // Required empty public constructor
@@ -43,7 +47,8 @@ public class FoodRecDetailFragment extends Fragment implements View.OnClickListe
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_food_rec_detail, container, false);
-        viewModel = new ViewModelProvider(this).get(FoodRecDetailViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(FoodRecDetailViewModel.class);
+
 
         FRDSelDto frdSelDto = (FRDSelDto) getArguments().getSerializable(AppConfig.FOOD_REC_BROWSER_TO_DETAIL_KEY);
         viewModel.setFrdSelDto(frdSelDto);
@@ -81,13 +86,24 @@ public class FoodRecDetailFragment extends Fragment implements View.OnClickListe
             }
         });
 
+        binding.floatingActionButton.setOnClickListener(this);
+
+        inputTextDialog = new InputTextDialog(requireContext());
+        inputTextDialog.setOnTextSendListener(new InputTextDialog.OnTextSendListener() {
+            @Override
+            public void onTextSend(String text) {
+                Log.d(AppConfig.TEST_TAG, "onTextSend: " + text);
+            }
+        });
+
+
         viewModel.getInfo().observe(getViewLifecycleOwner(), new Observer<FoodRecDetailDto>() {
             @Override
             public void onChanged(FoodRecDetailDto info) {
                 // 头像
                 Glide.with(FoodRecDetailFragment.this)
                         .load(AppConfig.BASE_URL + info.getUserAvatar())
-                        .into(binding.userAvtar);
+                        .into(binding.userAvatar);
 
                 // 配图
                 if (TextUtils.isEmpty(info.getPostImageUrl())){
@@ -146,6 +162,9 @@ public class FoodRecDetailFragment extends Fragment implements View.OnClickListe
                 buttonFavoriteHandler();
                 break;
             case R.id.buttonAttention:
+                break;
+            case R.id.floatingActionButton:
+                inputTextDialog.show();
                 break;
         }
     }
