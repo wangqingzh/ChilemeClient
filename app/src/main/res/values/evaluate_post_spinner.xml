@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="evaluate_post">
+        <item>东苑</item>
+        <item>欣苑</item>
+        <item>西苑</item>
+        <item>北苑</item>
+    </string-array>
+</resources>
