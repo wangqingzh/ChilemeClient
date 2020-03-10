@@ -90,5 +90,6 @@
     <string name="statistics">%d</string>
     <string name="food_rec_recommend_score">楼主评分 %.2f</string>
     <string name="recyclerView_comment_footer">什么都没有 快来评论吧</string>
+    <string name="comment_reply">回复</string>
 
 </resources>

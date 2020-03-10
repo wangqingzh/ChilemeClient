@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.text.TextUtils;
@@ -20,13 +21,18 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.wangqing.chilemecilent.R;
+import com.wangqing.chilemecilent.adapter.FoodRecDetailAdapter;
 import com.wangqing.chilemecilent.databinding.FragmentFoodRecDetailBinding;
+import com.wangqing.chilemecilent.object.dto.CommentBrowserDto;
 import com.wangqing.chilemecilent.object.dto.FRDSelDto;
 import com.wangqing.chilemecilent.object.dto.FoodRecDetailDto;
+import com.wangqing.chilemecilent.object.dto.LikeReqDto;
 import com.wangqing.chilemecilent.utils.AppConfig;
 import com.wangqing.chilemecilent.utils.RelativeDateFormat;
 import com.wangqing.chilemecilent.viewmodel.foodRec.FoodRecDetailViewModel;
 import com.wangqing.chilemecilent.widget.InputTextDialog;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,6 +44,8 @@ public class FoodRecDetailFragment extends Fragment implements View.OnClickListe
 
     private InputTextDialog inputTextDialog;
 
+    private FRDSelDto frdSelDto;
+
     public FoodRecDetailFragment() {
         // Required empty public constructor
     }
@@ -47,10 +55,10 @@ public class FoodRecDetailFragment extends Fragment implements View.OnClickListe
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_food_rec_detail, container, false);
-        viewModel = new ViewModelProvider(requireActivity()).get(FoodRecDetailViewModel.class);
+        viewModel = new ViewModelProvider(this).get(FoodRecDetailViewModel.class);
 
 
-        FRDSelDto frdSelDto = (FRDSelDto) getArguments().getSerializable(AppConfig.FOOD_REC_BROWSER_TO_DETAIL_KEY);
+        frdSelDto = (FRDSelDto) getArguments().getSerializable(AppConfig.FOOD_REC_BROWSER_TO_DETAIL_KEY);
         viewModel.setFrdSelDto(frdSelDto);
 
         binding.setData(viewModel);
@@ -66,19 +74,42 @@ public class FoodRecDetailFragment extends Fragment implements View.OnClickListe
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initView();
+        initComment();
+    }
 
+    /**
+     * 初始化评论
+     */
+    private void initComment() {
+        FoodRecDetailAdapter adapter = new FoodRecDetailAdapter(requireActivity(), viewModel);
+        viewModel.getCommentList().observe(getViewLifecycleOwner(), new Observer<List<CommentBrowserDto>>() {
+            @Override
+            public void onChanged(List<CommentBrowserDto> commentList) {
+                adapter.setCommentList(commentList);
+                adapter.notifyDataSetChanged();
+                if (!commentList.isEmpty()){
+                    binding.commentTip.setText("再翻就没喽！");
+
+                }
+            }
+        });
+
+        binding.recyclerView.setAdapter(adapter);
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
     }
 
     /**
      * 初始化界面
      */
     private void initView() {
+
         binding.buttonLike.init(requireActivity());
         binding.buttonLike.setOnClickListener(this);
         binding.buttonFavorite.init(requireActivity());
         binding.buttonFavorite.setOnClickListener(this);
         binding.buttonAttention.setOnClickListener(this);
 
+        // 刷新操作
         binding.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -86,17 +117,18 @@ public class FoodRecDetailFragment extends Fragment implements View.OnClickListe
             }
         });
 
+        // 评论按钮 操作
         binding.floatingActionButton.setOnClickListener(this);
 
         inputTextDialog = new InputTextDialog(requireContext());
         inputTextDialog.setOnTextSendListener(new InputTextDialog.OnTextSendListener() {
             @Override
             public void onTextSend(String text) {
-                Log.d(AppConfig.TEST_TAG, "onTextSend: " + text);
+                viewModel.addComment(text);
             }
         });
 
-
+        // 检测数据变化 并更新页面
         viewModel.getInfo().observe(getViewLifecycleOwner(), new Observer<FoodRecDetailDto>() {
             @Override
             public void onChanged(FoodRecDetailDto info) {
@@ -191,7 +223,7 @@ public class FoodRecDetailFragment extends Fragment implements View.OnClickListe
             info.setLikeNumber(info.getLikeNumber() - 1);
             info.setLikeStatus(false);
         }
-        viewModel.giveALike(true);
+        viewModel.giveALike(new LikeReqDto(frdSelDto.getPostId(), AppConfig.LIKE_TYPE_POST, null));
         viewModel.getInfo().setValue(info);
     }
 

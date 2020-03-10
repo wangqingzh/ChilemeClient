@@ -13,6 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class CommentBrowserDto {
     private Integer postId;
+    private Integer commentId;
     private String comment;
     private Integer fromUid;
     private Integer toUid;

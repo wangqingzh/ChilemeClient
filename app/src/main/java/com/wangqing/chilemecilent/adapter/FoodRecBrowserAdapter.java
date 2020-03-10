@@ -44,9 +44,6 @@ public class FoodRecBrowserAdapter extends RecyclerView.Adapter<FoodRecBrowserAd
     }
 
 
-
-
-
     @NonNull
     @Override
     public FoodRecBrowserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
