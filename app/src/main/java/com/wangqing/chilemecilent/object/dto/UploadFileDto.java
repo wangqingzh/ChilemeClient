@@ -13,7 +13,7 @@ public class UploadFileDto {
     /* 用户封面 */
     public static final int USER_COVER = 1;
     /* 帖子图片 */
-    public static final int POST_IMAGE = 2;
+    public static final int FOOD_REC_IMAGE = 2;
     /* 评价图片 */
     public static final int EVALUATION_IMAGE = 3;
 

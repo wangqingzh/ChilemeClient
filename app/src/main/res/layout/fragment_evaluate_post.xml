@@ -32,7 +32,8 @@
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:layout_marginStart="16dp"
-                    android:src="@drawable/ic_avatar_default"
+                    android:scaleType="centerCrop"
+                    tools:src="@tools:sample/avatars[6]"
                     app:layout_constraintBottom_toBottomOf="@+id/buttonSelectImage"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -70,6 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
+                    android:rating="0.0"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/textView20"
@@ -92,6 +94,7 @@
                         android:id="@+id/headline"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="@={data.evaluate.headline}"
                         android:hint="@string/post_headline" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,7 +122,9 @@
                         android:id="@+id/storeName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/evaluate_store_name" />
+                        android:hint="@string/evaluate_store_name"
+                        android:singleLine="true"
+                        android:text="@={data.evaluate.storeName}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -135,7 +140,9 @@
                         android:id="@+id/dish"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/evaluate_dish" />
+                        android:hint="@string/evaluate_dish"
+                        android:singleLine="true"
+                        android:text="@={data.evaluate.dish}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -151,6 +158,7 @@
                         android:id="@+id/content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="@={data.evaluate.content}"
                         android:hint="@string/evaluate_comment" />
                 </com.google.android.material.textfield.TextInputLayout>
 

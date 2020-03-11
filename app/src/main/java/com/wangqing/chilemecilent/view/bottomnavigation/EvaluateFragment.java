@@ -17,7 +17,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.wangqing.chilemecilent.R;
 import com.wangqing.chilemecilent.databinding.FragmentEvaluateBinding;
-import com.wangqing.chilemecilent.view.evaluate.HallBrowserFragment;
+import com.wangqing.chilemecilent.view.evaluate.EvaluateBrowserFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,13 +54,13 @@ public class EvaluateFragment extends Fragment {
             public Fragment createFragment(int position) {
                 switch (position) {
                     case 0:
-                        return new HallBrowserFragment(0);
+                        return new EvaluateBrowserFragment(0);
                     case 1:
-                        return new HallBrowserFragment(1);
+                        return new EvaluateBrowserFragment(1);
                     case 2:
-                        return new HallBrowserFragment(2);
+                        return new EvaluateBrowserFragment(2);
                     case 3:
-                        return new HallBrowserFragment(3);
+                        return new EvaluateBrowserFragment(3);
 
                 }
                 return null;

@@ -147,6 +147,6 @@
         tools:layout="@layout/fragment_evaluate_post" />
     <fragment
         android:id="@+id/hallBrowserFragment"
-        android:name="com.wangqing.chilemecilent.view.evaluate.HallBrowserFragment"
+        android:name="com.wangqing.chilemecilent.view.evaluate.EvaluateBrowserFragment"
         android:label="HallBrowserFragment" />
 </navigation>

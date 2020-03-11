@@ -61,7 +61,7 @@
         android:id="@+id/postImage"
         android:layout_width="0dp"
         android:layout_height="150dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="12dp"
         android:contentDescription="@string/image_view_content_description"
         android:scaleType="centerCrop"
@@ -69,7 +69,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/postHeadline"
-        app:layout_constraintTop_toBottomOf="@+id/postHeadline"
+        app:layout_constraintTop_toBottomOf="@+id/storeNameDish"
         tools:srcCompat="@tools:sample/avatars[0]" />
 
     <ImageView
@@ -91,12 +91,6 @@
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
         android:contentDescription="@string/image_view_content_description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postImage"
-        app:layout_constraintVertical_bias="0.0"
         android:src="@android:color/darker_gray"
         app:allow_random_color="false"
         app:big_shine_color="#FF6666"
@@ -104,6 +98,12 @@
         app:btn_fill_color="#FF6666"
         app:click_animation_duration="200"
         app:enable_flashing="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/postImage"
+        app:layout_constraintVertical_bias="0.0"
         app:shine_animation_duration="1500"
         app:shine_count="15"
         app:shine_distance_multiple="1.5"
@@ -132,5 +132,14 @@
         app:layout_constraintStart_toEndOf="@+id/commentImage"
         app:layout_constraintTop_toTopOf="@+id/commentImage"
         tools:text="56" />
+
+    <TextView
+        android:id="@+id/storeNameDish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="@+id/postHeadline"
+        app:layout_constraintTop_toBottomOf="@+id/postHeadline"
+        tools:text="19号窗口|盖浇饭" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

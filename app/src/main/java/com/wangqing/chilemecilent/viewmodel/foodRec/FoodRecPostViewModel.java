@@ -114,7 +114,7 @@ public class FoodRecPostViewModel extends AndroidViewModel {
         File file = getImage().getValue();
 
         Map<String, Object> params = new HashMap<>();
-        params.put(AppConfig.UP_INFO, new UploadFileDto(UploadFileDto.POST_IMAGE, postId));
+        params.put(AppConfig.UP_INFO, new UploadFileDto(UploadFileDto.FOOD_REC_IMAGE, postId));
 
         MediaType mediaType = MediaType.parse("/image/jpg");
         RequestBody fileBody = RequestBody.create(mediaType, file);
