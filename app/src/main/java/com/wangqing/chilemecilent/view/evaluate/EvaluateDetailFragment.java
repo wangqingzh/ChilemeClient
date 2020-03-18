@@ -1,5 +1,4 @@
-package com.wangqing.chilemecilent.view.foodrec;
-
+package com.wangqing.chilemecilent.view.evaluate;
 
 import android.os.Bundle;
 
@@ -18,15 +17,18 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.wangqing.chilemecilent.R;
+import com.wangqing.chilemecilent.adapter.EvaluateDetailAdapter;
 import com.wangqing.chilemecilent.adapter.FoodRecDetailAdapter;
-import com.wangqing.chilemecilent.databinding.FragmentFoodRecDetailBinding;
+import com.wangqing.chilemecilent.databinding.FragmentEvaluateDetailBinding;
+import com.wangqing.chilemecilent.object.ao.CESel;
 import com.wangqing.chilemecilent.object.dto.CommentBrowserDto;
-import com.wangqing.chilemecilent.object.dto.FRDSelDto;
+import com.wangqing.chilemecilent.object.dto.EvaluateDetailDto;
 import com.wangqing.chilemecilent.object.dto.FoodRecDetailDto;
 import com.wangqing.chilemecilent.object.dto.LikeReqDto;
 import com.wangqing.chilemecilent.utils.AppConfig;
 import com.wangqing.chilemecilent.utils.RelativeDateFormat;
-import com.wangqing.chilemecilent.viewmodel.foodRec.FoodRecDetailViewModel;
+import com.wangqing.chilemecilent.view.foodrec.FoodRecDetailFragment;
+import com.wangqing.chilemecilent.viewmodel.evaluate.EvaluateDetailViewModel;
 import com.wangqing.chilemecilent.widget.InputTextDialog;
 
 import java.util.List;
@@ -34,89 +36,65 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FoodRecDetailFragment extends Fragment implements View.OnClickListener{
+public class EvaluateDetailFragment extends Fragment implements View.OnClickListener{
 
-    private FragmentFoodRecDetailBinding binding;
-    private FoodRecDetailViewModel viewModel;
-
+    private FragmentEvaluateDetailBinding binding;
+    private EvaluateDetailViewModel viewModel;
     private InputTextDialog inputTextDialog;
 
-    private FRDSelDto frdSelDto;
+    private CESel ceSel;
 
-    public FoodRecDetailFragment() {
+
+    public EvaluateDetailFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_food_rec_detail, container, false);
-        viewModel = new ViewModelProvider(this).get(FoodRecDetailViewModel.class);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_evaluate_detail, container, false);
+        viewModel = new ViewModelProvider(this).get(EvaluateDetailViewModel.class);
 
+        ceSel = (CESel) getArguments().getSerializable(AppConfig.EVALUATE_BROWSER_TO_DETAIL_KEY);
+        viewModel.setCeSel(ceSel);
 
-        frdSelDto = (FRDSelDto) getArguments().getSerializable(AppConfig.FOOD_REC_BROWSER_TO_DETAIL_KEY);
-        viewModel.setFrdSelDto(frdSelDto);
-
-        binding.setData(viewModel);
         binding.setLifecycleOwner(requireActivity());
-
+        binding.setData(viewModel);
 
         return binding.getRoot();
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_food_rec_detail, container, false);
+        //return inflater.inflate(R.layout.fragment_evaluate_detail, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         initView();
         initComment();
     }
 
-    /**
-     * 初始化评论
-     */
-    private void initComment() {
-        FoodRecDetailAdapter adapter = new FoodRecDetailAdapter(requireActivity(), viewModel);
-        viewModel.getCommentList().observe(getViewLifecycleOwner(), new Observer<List<CommentBrowserDto>>() {
-            @Override
-            public void onChanged(List<CommentBrowserDto> commentList) {
-                adapter.setCommentList(commentList);
-                adapter.notifyDataSetChanged();
-                if (!commentList.isEmpty()){
-                    binding.commentTip.setText("再翻就没喽！");
 
-                }
-            }
-        });
-
-        binding.recyclerView.setAdapter(adapter);
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-    }
-
-    /**
-     * 初始化界面
-     */
     private void initView() {
-
+        // 注册点击监听
         binding.buttonLike.init(requireActivity());
         binding.buttonLike.setOnClickListener(this);
         binding.buttonFavorite.init(requireActivity());
         binding.buttonFavorite.setOnClickListener(this);
         binding.buttonAttention.setOnClickListener(this);
 
+        // 评论按钮
+        binding.buttonComment.setOnClickListener(this);
+
         // 刷新操作
         binding.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                viewModel.getDetailByFRDSel();
+                viewModel.getEvaluateDetailFromServer();
             }
         });
 
-        // 评论按钮 操作
-        binding.floatingActionButton.setOnClickListener(this);
-
+        // 评论操作
         inputTextDialog = new InputTextDialog(requireContext());
         inputTextDialog.setOnTextSendListener(new InputTextDialog.OnTextSendListener() {
             @Override
@@ -126,11 +104,11 @@ public class FoodRecDetailFragment extends Fragment implements View.OnClickListe
         });
 
         // 检测数据变化 并更新页面
-        viewModel.getInfo().observe(getViewLifecycleOwner(), new Observer<FoodRecDetailDto>() {
+        viewModel.getInfo().observe(getViewLifecycleOwner(), new Observer<EvaluateDetailDto>() {
             @Override
-            public void onChanged(FoodRecDetailDto info) {
+            public void onChanged(EvaluateDetailDto info) {
                 // 头像
-                Glide.with(FoodRecDetailFragment.this)
+                Glide.with(EvaluateDetailFragment.this)
                         .load(AppConfig.BASE_URL + info.getUserAvatar())
                         .into(binding.userAvatar);
 
@@ -138,7 +116,7 @@ public class FoodRecDetailFragment extends Fragment implements View.OnClickListe
                 if (TextUtils.isEmpty(info.getPostImageUrl())){
                     binding.postImage.setVisibility(View.GONE);
                 }else {
-                    Glide.with(FoodRecDetailFragment.this)
+                    Glide.with(EvaluateDetailFragment.this)
                             .load(AppConfig.BASE_URL + info.getPostImageUrl())
                             .into(binding.postImage);
                 }
@@ -173,12 +151,30 @@ public class FoodRecDetailFragment extends Fragment implements View.OnClickListe
                 binding.swipeRefreshLayout.setRefreshing(false);
             }
         });
-
-
     }
 
+
+    private void initComment() {
+        EvaluateDetailAdapter adapter = new EvaluateDetailAdapter(requireActivity(), viewModel);
+        viewModel.getCommentList().observe(getViewLifecycleOwner(), new Observer<List<CommentBrowserDto>>() {
+            @Override
+            public void onChanged(List<CommentBrowserDto> commentList) {
+                adapter.setCommentList(commentList);
+                adapter.notifyDataSetChanged();
+                if (!commentList.isEmpty()){
+                    binding.commentTip.setText("再翻就没喽！");
+
+                }
+            }
+        });
+
+        binding.recyclerView.setAdapter(adapter);
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+    }
+
+
     /**
-     * 处理点击事件
+     * 点击事件回调
      * @param v
      */
     @Override
@@ -192,14 +188,13 @@ public class FoodRecDetailFragment extends Fragment implements View.OnClickListe
                 break;
             case R.id.buttonAttention:
                 break;
-            case R.id.floatingActionButton:
+            case R.id.buttonComment:
                 inputTextDialog.show();
                 break;
         }
     }
-
     private void buttonFavoriteHandler() {
-        FoodRecDetailDto info = viewModel.getInfo().getValue();
+        EvaluateDetailDto info = viewModel.getInfo().getValue();
         if (binding.buttonFavorite.isChecked()){
             info.setFavoriteNumber(info.getFavoriteNumber() + 1);
             info.setFavoriteStatus(true);
@@ -212,7 +207,7 @@ public class FoodRecDetailFragment extends Fragment implements View.OnClickListe
     }
 
     private void buttonLikeHandler() {
-        FoodRecDetailDto info = viewModel.getInfo().getValue();
+        EvaluateDetailDto info = viewModel.getInfo().getValue();
         if (binding.buttonLike.isChecked()){
             info.setLikeNumber(info.getLikeNumber() + 1);
             info.setLikeStatus(true);
@@ -220,9 +215,7 @@ public class FoodRecDetailFragment extends Fragment implements View.OnClickListe
             info.setLikeNumber(info.getLikeNumber() - 1);
             info.setLikeStatus(false);
         }
-        viewModel.giveALike(new LikeReqDto(frdSelDto.getPostId(), AppConfig.LIKE_TYPE_POST, null));
+        viewModel.giveALike(new LikeReqDto(ceSel.getPostId(), AppConfig.LIKE_TYPE_POST, null));
         viewModel.getInfo().setValue(info);
     }
-
-
 }

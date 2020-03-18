@@ -91,6 +91,9 @@
         <action
             android:id="@+id/action_evaluateFragment_to_evaluatePostFragment"
             app:destination="@id/evaluatePostFragment" />
+        <action
+            android:id="@+id/action_evaluateFragment_to_evaluateDetailFragment"
+            app:destination="@id/evaluateDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/foodRecFragment"
@@ -128,25 +131,23 @@
         android:id="@+id/foodRecDetailFragment"
         android:name="com.wangqing.chilemecilent.view.foodrec.FoodRecDetailFragment"
         android:label="详情"
-        tools:layout="@layout/fragment_food_rec_detail" >
-        <action
-            android:id="@+id/action_foodRecDetailFragment_to_foodRecCommentFragment"
-            app:destination="@id/foodRecCommentFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_food_rec_detail" />
     <fragment
         android:id="@+id/photoViewFragment"
         android:name="com.wangqing.chilemecilent.view.PhotoViewFragment"
         tools:layout="@layout/fragment_photo_view" />
-    <dialog
-        android:id="@+id/foodRecCommentFragment"
-        android:name="com.wangqing.chilemecilent.view.foodrec.FoodRecCommentFragment" />
     <fragment
         android:id="@+id/evaluatePostFragment"
         android:name="com.wangqing.chilemecilent.view.evaluate.EvaluatePostFragment"
         android:label="校园餐饮评价"
         tools:layout="@layout/fragment_evaluate_post" />
     <fragment
-        android:id="@+id/hallBrowserFragment"
+        android:id="@+id/evaluateDetailFragment"
+        android:name="com.wangqing.chilemecilent.view.evaluate.EvaluateDetailFragment"
+        android:label="详情"
+        tools:layout="@layout/fragment_evaluate_detail" />
+    <fragment
+        android:id="@+id/evaluateBrowserFragment"
         android:name="com.wangqing.chilemecilent.view.evaluate.EvaluateBrowserFragment"
-        android:label="HallBrowserFragment" />
+        android:label="EvaluateBrowserFragment" />
 </navigation>

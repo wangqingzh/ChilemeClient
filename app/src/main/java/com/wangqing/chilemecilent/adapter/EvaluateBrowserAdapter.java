@@ -1,6 +1,8 @@
 package com.wangqing.chilemecilent.adapter;
 
 import android.app.Activity;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +11,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.sackcentury.shinebuttonlib.ShineButton;
 import com.wangqing.chilemecilent.R;
+import com.wangqing.chilemecilent.object.ao.CESel;
 import com.wangqing.chilemecilent.object.dto.EvaluateBrowserDto;
 import com.wangqing.chilemecilent.object.dto.LikeReqDto;
 import com.wangqing.chilemecilent.utils.AppConfig;
@@ -102,7 +107,17 @@ public class EvaluateBrowserAdapter extends RecyclerView.Adapter<EvaluateBrowser
             }
         });
 
-
+        // 跳转到详情页面
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavController  controller = Navigation.findNavController(v);
+                Bundle bundle = new Bundle();
+                Log.d(AppConfig.TEST_TAG, "onClick: " + controller.getCurrentDestination());
+                bundle.putSerializable(AppConfig.EVALUATE_BROWSER_TO_DETAIL_KEY, new CESel(info.getPostId(), info.getUserId(), viewModel.getAccountManager().getUser().getUserId()));
+                controller.navigate(R.id.action_evaluateFragment_to_evaluateDetailFragment, bundle);
+            }
+        });
 
 
 

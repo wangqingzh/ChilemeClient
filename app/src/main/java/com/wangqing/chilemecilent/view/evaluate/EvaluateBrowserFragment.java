@@ -48,7 +48,7 @@ public class EvaluateBrowserFragment extends Fragment {
 
         viewModel.setHallId(hallId);
 
-        binding.setLifecycleOwner(this);
+        binding.setLifecycleOwner(requireActivity());
 
 
         return binding.getRoot();

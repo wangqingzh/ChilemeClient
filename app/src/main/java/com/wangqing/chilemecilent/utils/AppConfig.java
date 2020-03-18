@@ -12,4 +12,5 @@ public final class AppConfig {
     public static final Integer LIKE_TYPE_COMMENT = 1;
 
     public static String FOOD_REC_BROWSER_TO_DETAIL_KEY = "FOOD_REC_BROWSER_TO_DETAIL_KEY";
+    public static String EVALUATE_BROWSER_TO_DETAIL_KEY = "EVALUATE_BROWSER_TO_DETAIL_KEY";
 }

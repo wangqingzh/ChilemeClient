@@ -53,13 +53,16 @@ public class EvaluateBrowserViewModel extends AndroidViewModel {
         this.hallId = hallId;
     }
 
+    public AccountManager getAccountManager() {
+        return accountManager;
+    }
 
 
     /* web api */
 
     public void getEvaluateBrowserFromServer(){
         EvaluateApi evaluateApi = RetrofitHandle.getInstance().getRetrofit().create(EvaluateApi.class);
-        Call<CommonResult<List<EvaluateBrowserDto>>> task = evaluateApi.getEvaluate(accountManager.getUser().getUserId(), hallId, accountManager.getToken());
+        Call<CommonResult<List<EvaluateBrowserDto>>> task = evaluateApi.getEvaluateBrowser(accountManager.getUser().getUserId(), hallId, accountManager.getToken());
         task.enqueue(new Callback<CommonResult<List<EvaluateBrowserDto>>>() {
             @Override
             public void onResponse(Call<CommonResult<List<EvaluateBrowserDto>>> call, Response<CommonResult<List<EvaluateBrowserDto>>> response) {
