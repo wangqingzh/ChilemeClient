@@ -1,6 +1,7 @@
 package com.wangqing.chilemecilent.adapter;
 
 import android.app.Activity;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +15,12 @@ import com.bumptech.glide.Glide;
 import com.sackcentury.shinebuttonlib.ShineButton;
 import com.wangqing.chilemecilent.R;
 import com.wangqing.chilemecilent.object.dto.CommentBrowserDto;
+import com.wangqing.chilemecilent.object.dto.CommentPostDto;
 import com.wangqing.chilemecilent.object.dto.LikeReqDto;
 import com.wangqing.chilemecilent.utils.AppConfig;
 import com.wangqing.chilemecilent.utils.RelativeDateFormat;
 import com.wangqing.chilemecilent.viewmodel.evaluate.EvaluateDetailViewModel;
-import com.wangqing.chilemecilent.viewmodel.foodRec.FoodRecDetailViewModel;
+import com.wangqing.chilemecilent.widget.InputTextDialog;
 
 import java.util.List;
 
@@ -27,11 +29,13 @@ public class EvaluateDetailAdapter extends RecyclerView.Adapter<FoodRecDetailAda
     private List<CommentBrowserDto> commentList;
     private Activity activity;
     private EvaluateDetailViewModel viewModel;
-
+    private InputTextDialog inputTextDialog;
+    private int replyFlag;
 
     public EvaluateDetailAdapter(Activity activity, EvaluateDetailViewModel viewModel) {
         this.activity = activity;
         this.viewModel = viewModel;
+        inputTextDialog = new InputTextDialog(activity);
     }
 
     public void setCommentList(List<CommentBrowserDto> commentList) {
@@ -42,7 +46,7 @@ public class EvaluateDetailAdapter extends RecyclerView.Adapter<FoodRecDetailAda
     @Override
     public FoodRecDetailAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.food_rec_comment_holder, parent, false);
+        View view = layoutInflater.inflate(R.layout.comment_holder, parent, false);
         return new FoodRecDetailAdapter.ViewHolder(view);
     }
 
@@ -54,6 +58,16 @@ public class EvaluateDetailAdapter extends RecyclerView.Adapter<FoodRecDetailAda
         holder.likeNumber.setText(String.valueOf(info.getLikeNumber()));
         holder.floorAndDate.setText((position + 1) + "楼 | " + RelativeDateFormat.format(info.getWriteTime()));
         holder.comment.setText(info.getComment());
+
+        if (info.getToUid() == null){
+            holder.replyXxx.setVisibility(View.GONE);
+            holder.comment.setText(info.getComment());
+        }else {
+            String comment = info.getComment();
+            String[] tmp = comment.split(" ");
+            holder.replyXxx.setText(tmp[0]);
+            holder.comment.setText(comment.replace(tmp[0]+" ", ""));
+        }
 
         Glide.with(holder.itemView)
                 .load(AppConfig.BASE_URL + info.getUserAvatar())
@@ -75,14 +89,33 @@ public class EvaluateDetailAdapter extends RecyclerView.Adapter<FoodRecDetailAda
                     commentList.set(position, info);
                     EvaluateDetailAdapter.this.notifyDataSetChanged();
                     // 更新服务端
-                    viewModel.giveALike(new LikeReqDto(info.getCommentId(), AppConfig.LIKE_TYPE_COMMENT, null));
+                    viewModel.giveALike(LikeReqDto.of(info.getCommentId(), AppConfig.LIKE_TYPE_COMMENT));
                 }else {
                     info.setLikeNumber(info.getLikeNumber() - 1);
                     info.setLikeStatus(!info.isLikeStatus());
                     commentList.set(position, info);
                     EvaluateDetailAdapter.this.notifyDataSetChanged();
-                    viewModel.giveALike(new LikeReqDto(info.getCommentId(), AppConfig.LIKE_TYPE_COMMENT, null));
+                    viewModel.giveALike(LikeReqDto.of(info.getCommentId(), AppConfig.LIKE_TYPE_COMMENT));
                 }
+            }
+        });
+
+        // 回复评论操作
+        holder.reply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (replyFlag != info.getFromUid()){inputTextDialog.clearText();}
+                inputTextDialog.setHit("回复 " + "@" + info.getUserName());
+                inputTextDialog.show();
+                inputTextDialog.setOnTextSendListener(new InputTextDialog.OnTextSendListener() {
+                    @Override
+                    public void onTextSend(String text) {
+                        CommentPostDto comment = new CommentPostDto(info.getPostId(), "@" + info.getUserName() + " " + text
+                                , viewModel.getAccountManager().getUser().getUserId(), info.getFromUid());
+                        viewModel.addComment(comment);
+                    }
+                });
+                replyFlag = info.getFromUid();
             }
         });
 
@@ -104,6 +137,7 @@ public class EvaluateDetailAdapter extends RecyclerView.Adapter<FoodRecDetailAda
         TextView likeNumber;
         TextView comment;
         TextView reply;
+        TextView replyXxx;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -114,6 +148,8 @@ public class EvaluateDetailAdapter extends RecyclerView.Adapter<FoodRecDetailAda
             likeNumber = itemView.findViewById(R.id.likeNumber);
             comment = itemView.findViewById(R.id.comment);
             reply = itemView.findViewById(R.id.reply);
+
+            replyXxx.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
         }
     }
 

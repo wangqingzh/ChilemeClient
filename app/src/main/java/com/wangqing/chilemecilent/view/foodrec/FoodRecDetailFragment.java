@@ -21,6 +21,7 @@ import com.wangqing.chilemecilent.R;
 import com.wangqing.chilemecilent.adapter.FoodRecDetailAdapter;
 import com.wangqing.chilemecilent.databinding.FragmentFoodRecDetailBinding;
 import com.wangqing.chilemecilent.object.dto.CommentBrowserDto;
+import com.wangqing.chilemecilent.object.dto.CommentPostDto;
 import com.wangqing.chilemecilent.object.dto.FRDSelDto;
 import com.wangqing.chilemecilent.object.dto.FoodRecDetailDto;
 import com.wangqing.chilemecilent.object.dto.LikeReqDto;
@@ -118,10 +119,12 @@ public class FoodRecDetailFragment extends Fragment implements View.OnClickListe
         binding.floatingActionButton.setOnClickListener(this);
 
         inputTextDialog = new InputTextDialog(requireContext());
+        inputTextDialog.setHit("回复楼主");
         inputTextDialog.setOnTextSendListener(new InputTextDialog.OnTextSendListener() {
             @Override
             public void onTextSend(String text) {
-                viewModel.addComment(text);
+                CommentPostDto comment = new CommentPostDto(frdSelDto.getPostId(), text, frdSelDto.getUserId(), null);
+                viewModel.addComment(comment);
             }
         });
 

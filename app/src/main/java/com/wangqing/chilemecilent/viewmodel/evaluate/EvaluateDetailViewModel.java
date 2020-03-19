@@ -50,6 +50,7 @@ public class EvaluateDetailViewModel extends AndroidViewModel {
     public EvaluateDetailViewModel(@NonNull Application application) {
         super(application);
         accountManager = AccountManager.getInstance(application);
+        likeFavoriteAttentionApi = RetrofitHandle.getInstance().getRetrofit().create(LikeFavoriteAttentionApi.class);
     }
 
 
@@ -65,6 +66,7 @@ public class EvaluateDetailViewModel extends AndroidViewModel {
     public MutableLiveData<List<CommentBrowserDto>> getCommentList() {
         if (commentList == null){
             commentList = new MutableLiveData<>();
+            getComment();
         }
         return commentList;
     }
@@ -150,10 +152,9 @@ public class EvaluateDetailViewModel extends AndroidViewModel {
         });
     }
 
-    public void addComment(String text) {
+    public void addComment(CommentPostDto comment) {
         CommentApi commentApi = RetrofitHandle.getInstance().getRetrofit().create(CommentApi.class);
-        Call<CommonResult<Object>> task = commentApi.addComment(
-                new CommentPostDto(ceSel.getPostId(), text, ceSel.getUserId(), null), accountManager.getToken());
+        Call<CommonResult<Object>> task = commentApi.addComment(comment, accountManager.getToken());
         task.enqueue(new Callback<CommonResult<Object>>() {
             @Override
             public void onResponse(Call<CommonResult<Object>> call, Response<CommonResult<Object>> response) {

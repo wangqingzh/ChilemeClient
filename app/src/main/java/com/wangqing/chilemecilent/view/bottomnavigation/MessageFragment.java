@@ -17,7 +17,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.wangqing.chilemecilent.R;
 import com.wangqing.chilemecilent.view.message.MessageLikeFragment;
-import com.wangqing.chilemecilent.view.message.MessageRelyFragment;
+import com.wangqing.chilemecilent.view.message.MessageReplyFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,7 +50,7 @@ public class MessageFragment extends Fragment {
             public Fragment createFragment(int position) {
                 switch (position) {
                     case 0:
-                        return new MessageRelyFragment();
+                        return new MessageReplyFragment();
                     case 1:
                         return new MessageLikeFragment();
                 }

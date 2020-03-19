@@ -22,6 +22,7 @@ import com.wangqing.chilemecilent.adapter.FoodRecDetailAdapter;
 import com.wangqing.chilemecilent.databinding.FragmentEvaluateDetailBinding;
 import com.wangqing.chilemecilent.object.ao.CESel;
 import com.wangqing.chilemecilent.object.dto.CommentBrowserDto;
+import com.wangqing.chilemecilent.object.dto.CommentPostDto;
 import com.wangqing.chilemecilent.object.dto.EvaluateDetailDto;
 import com.wangqing.chilemecilent.object.dto.FoodRecDetailDto;
 import com.wangqing.chilemecilent.object.dto.LikeReqDto;
@@ -96,10 +97,12 @@ public class EvaluateDetailFragment extends Fragment implements View.OnClickList
 
         // 评论操作
         inputTextDialog = new InputTextDialog(requireContext());
+        inputTextDialog.setHit("回复楼主");
         inputTextDialog.setOnTextSendListener(new InputTextDialog.OnTextSendListener() {
             @Override
             public void onTextSend(String text) {
-                viewModel.addComment(text);
+                CommentPostDto comment = new CommentPostDto(ceSel.getPostId(),text, ceSel.getUserId(), null);
+                viewModel.addComment(comment);
             }
         });
 

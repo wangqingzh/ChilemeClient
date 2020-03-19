@@ -18,8 +18,6 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.wangqing.chilemecilent.R;
 import com.wangqing.chilemecilent.view.home.HomeAttentionFragment;
 import com.wangqing.chilemecilent.view.home.HomeRecommendFragment;
-import com.wangqing.chilemecilent.view.message.MessageLikeFragment;
-import com.wangqing.chilemecilent.view.message.MessageRelyFragment;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -1,6 +1,7 @@
 package com.wangqing.chilemecilent.adapter;
 
 import android.app.Activity;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,23 +15,31 @@ import com.bumptech.glide.Glide;
 import com.sackcentury.shinebuttonlib.ShineButton;
 import com.wangqing.chilemecilent.R;
 import com.wangqing.chilemecilent.object.dto.CommentBrowserDto;
+import com.wangqing.chilemecilent.object.dto.CommentPostDto;
 import com.wangqing.chilemecilent.object.dto.LikeReqDto;
 import com.wangqing.chilemecilent.utils.AppConfig;
 import com.wangqing.chilemecilent.utils.RelativeDateFormat;
 import com.wangqing.chilemecilent.viewmodel.foodRec.FoodRecDetailViewModel;
+import com.wangqing.chilemecilent.widget.InputTextDialog;
 
 import java.util.List;
 
 public class FoodRecDetailAdapter extends RecyclerView.Adapter<FoodRecDetailAdapter.ViewHolder> {
 
     private List<CommentBrowserDto> commentList;
+
+    private InputTextDialog inputTextDialog;
+
     private Activity activity;
     private FoodRecDetailViewModel viewModel;
+
+    private int replyFlag;
 
 
     public FoodRecDetailAdapter(Activity activity, FoodRecDetailViewModel viewModel) {
         this.activity = activity;
         this.viewModel = viewModel;
+        inputTextDialog = new InputTextDialog(activity);
     }
 
     public void setCommentList(List<CommentBrowserDto> commentList) {
@@ -41,7 +50,7 @@ public class FoodRecDetailAdapter extends RecyclerView.Adapter<FoodRecDetailAdap
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.food_rec_comment_holder, parent, false);
+        View view = layoutInflater.inflate(R.layout.comment_holder, parent, false);
         return new ViewHolder(view);
     }
 
@@ -52,7 +61,15 @@ public class FoodRecDetailAdapter extends RecyclerView.Adapter<FoodRecDetailAdap
         holder.userName.setText(info.getUserName());
         holder.likeNumber.setText(String.valueOf(info.getLikeNumber()));
         holder.floorAndDate.setText((position + 1) + "楼 | " + RelativeDateFormat.format(info.getWriteTime()));
-        holder.comment.setText(info.getComment());
+        if (info.getToUid() == null){
+            holder.replyXxx.setVisibility(View.GONE);
+            holder.comment.setText(info.getComment());
+        }else {
+            String comment = info.getComment();
+            String[] tmp = comment.split(" ");
+            holder.replyXxx.setText(tmp[0]);
+            holder.comment.setText(comment.replace(tmp[0]+" ", ""));
+        }
 
         Glide.with(holder.itemView)
                 .load(AppConfig.BASE_URL + info.getUserAvatar())
@@ -85,6 +102,24 @@ public class FoodRecDetailAdapter extends RecyclerView.Adapter<FoodRecDetailAdap
             }
         });
 
+        holder.reply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (replyFlag != info.getFromUid()){inputTextDialog.clearText();}
+                inputTextDialog.setHit("回复 " + "@" + info.getUserName());
+                inputTextDialog.show();
+                inputTextDialog.setOnTextSendListener(new InputTextDialog.OnTextSendListener() {
+                    @Override
+                    public void onTextSend(String text) {
+                        CommentPostDto comment = new CommentPostDto(info.getPostId(), "@" + info.getUserName() + " " + text
+                        , viewModel.getAccountManager().getUser().getUserId(), info.getFromUid());
+                        viewModel.addComment(comment);
+                    }
+                });
+                replyFlag = info.getFromUid();
+            }
+        });
+
     }
 
     @Override
@@ -103,6 +138,7 @@ public class FoodRecDetailAdapter extends RecyclerView.Adapter<FoodRecDetailAdap
         TextView likeNumber;
         TextView comment;
         TextView reply;
+        TextView replyXxx;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -113,6 +149,10 @@ public class FoodRecDetailAdapter extends RecyclerView.Adapter<FoodRecDetailAdap
             likeNumber = itemView.findViewById(R.id.likeNumber);
             comment = itemView.findViewById(R.id.comment);
             reply = itemView.findViewById(R.id.reply);
+            replyXxx = itemView.findViewById(R.id.replyXxx);
+
+            replyXxx.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+
         }
     }
 

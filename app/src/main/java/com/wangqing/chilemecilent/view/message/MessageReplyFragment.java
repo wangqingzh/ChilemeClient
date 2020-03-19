@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +14,10 @@ import com.wangqing.chilemecilent.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MessageRelyFragment extends Fragment {
+public class MessageReplyFragment extends Fragment {
 
 
-    public MessageRelyFragment() {
+    public MessageReplyFragment() {
         // Required empty public constructor
     }
 
@@ -27,7 +26,7 @@ public class MessageRelyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_message_rely, container, false);
+        return inflater.inflate(R.layout.fragment_message_reply, container, false);
     }
 
 

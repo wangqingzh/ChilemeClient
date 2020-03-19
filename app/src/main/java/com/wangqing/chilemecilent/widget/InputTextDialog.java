@@ -33,6 +33,7 @@ public class InputTextDialog extends AppCompatDialog {
 
     private OnTextSendListener onTextSendListener;
 
+
     private TextWatcher mTextWatcher = new TextWatcher() {
         private CharSequence temp;
 
@@ -84,6 +85,7 @@ public class InputTextDialog extends AppCompatDialog {
         buttonSend.setColorFilter(ContextCompat.getColor(context, R.color.iconCover));
 
 
+
         editComment.addTextChangedListener(mTextWatcher);
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +99,7 @@ public class InputTextDialog extends AppCompatDialog {
             }
         });
 
-        editComment.setHint("回复");
+
 
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
@@ -140,5 +142,13 @@ public class InputTextDialog extends AppCompatDialog {
 
     public void setOnTextSendListener(OnTextSendListener onTextSendListener) {
         this.onTextSendListener = onTextSendListener;
+    }
+
+    public void setHit(String hit) {
+        editComment.setHint(hit);
+    }
+
+    public void clearText(){
+        editComment.setText("");
     }
 }
