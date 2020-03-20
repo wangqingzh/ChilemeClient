@@ -28,9 +28,11 @@ public class MessageReplyDto {
     /* 原始内容 */
     private String originalContent;
     /* 评论时间 */
-    private Date time;
-    /* 用户昵称 */
-    private String userName;
-    /* 用户头像 */
-    private String userAvatar;
+    private Date commentTime;
+    /* 评论人ＩＤ */
+    private Integer commentUserId;
+    /* 评论人昵称 */
+    private String commentUserName;
+    /* 评论人头像 */
+    private String commentUserAvatar;
 }

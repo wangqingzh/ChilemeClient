@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp">
+
+    <ImageView
+        android:id="@+id/likeUserAvatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/image_view_content_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_avatar_default" />
+
+    <TextView
+        android:id="@+id/likeUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="@dimen/smallFont"
+        app:layout_constraintStart_toEndOf="@+id/likeUserAvatar"
+        app:layout_constraintTop_toTopOf="@+id/likeUserAvatar"
+        tools:text="老王" />
+
+    <TextView
+        android:id="@+id/likeTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        app:layout_constraintStart_toStartOf="@+id/likeUserName"
+        app:layout_constraintTop_toBottomOf="@+id/likeUserName"
+        tools:text="2020-23" />
+
+    <TextView
+        android:id="@+id/declare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:textSize="@dimen/smallPlusFont"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/content"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/likeUserAvatar"
+        app:layout_constraintTop_toBottomOf="@+id/likeUserAvatar"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="赞了我的回复" />
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/likeUserAvatar"
+        tools:text="很快就来放大机两uz" />
+</androidx.constraintlayout.widget.ConstraintLayout>
