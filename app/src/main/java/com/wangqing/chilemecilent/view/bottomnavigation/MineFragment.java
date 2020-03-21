@@ -75,6 +75,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         binding.settingLayout.setOnClickListener(this);
 
         binding.buttonSpace.setOnClickListener(this);
+        binding.chatRoomLayout.setOnClickListener(this);
 
 
     }
@@ -98,7 +99,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 controller.navigate(R.id.action_mineFragment_to_editFragment);
                 break;
             case R.id.chatRoomLayout:
-                controller.navigate(R.id.action_mineFragment_to_chatRoomFragment);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(AppConfig.MINE_TO_CHAT_ROOM_KEY, mineViewModel.getInfo().getValue());
+                controller.navigate(R.id.action_mineFragment_to_chatRoomFragment, bundle);
             default:
                 break;
         }

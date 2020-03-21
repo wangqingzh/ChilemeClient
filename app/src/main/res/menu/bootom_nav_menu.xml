@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/homeFragment"
-        android:icon="@drawable/ic_home_blue_24dp"
-        android:title="@string/home" />
-    <item
         android:id="@+id/evaluateFragment"
-        android:icon="@drawable/school"
+        android:icon="@drawable/ic_school"
         android:title="@string/evaluate" />
     <item
         android:id="@+id/foodRecFragment"
-        android:icon="@drawable/ic_partition_blue_24dp"
+        android:icon="@drawable/ic_food_rec"
         android:title="@string/foodRec" />
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_dynamic"
+        android:title="@string/dynamic" />
     <item
         android:id="@+id/messageFragment"
         android:icon="@drawable/ic_message_blue_24dp"

@@ -4,7 +4,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">首页</string>
-    <string name="foodRec">推帖</string>
+    <string name="foodRec">美食</string>
     <string name="message">消息</string>
     <string name="mine">我的</string>
     <string name="loginUserNameHint">请输入手机号</string>
@@ -98,5 +98,7 @@
     <string name="evaluate_hall_name">食堂</string>
     <string name="evaluate_score">打分</string>
     <string name="evaluate_button_post">发布</string>
+    <string name="chat_room_send">发送</string>
+    <string name="dynamic">动态</string>
 
 </resources>

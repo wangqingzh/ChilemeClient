@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/mineFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.wangqing.chilemecilent.view.bottomnavigation.HomeFragment"
-        android:label="首页"
+        android:label="动态"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/messageFragment"
@@ -108,7 +108,7 @@
     <fragment
         android:id="@+id/foodRecFragment"
         android:name="com.wangqing.chilemecilent.view.bottomnavigation.FoodRecFragment"
-        android:label="推贴"
+        android:label="美食"
         tools:layout="@layout/fragment_food_rec">
         <action
             android:id="@+id/action_foodRecFragment_to_foodRecPostFragment"
