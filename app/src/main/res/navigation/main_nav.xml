@@ -14,7 +14,14 @@
         android:id="@+id/messageFragment"
         android:name="com.wangqing.chilemecilent.view.bottomnavigation.MessageFragment"
         android:label="消息"
-        tools:layout="@layout/fragment_message" />
+        tools:layout="@layout/fragment_message" >
+        <action
+            android:id="@+id/action_messageFragment_to_foodRecDetailFragment"
+            app:destination="@id/foodRecDetailFragment" />
+        <action
+            android:id="@+id/action_messageFragment_to_evaluateDetailFragment"
+            app:destination="@id/evaluateDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mineFragment"
         android:name="com.wangqing.chilemecilent.view.bottomnavigation.MineFragment"
@@ -32,6 +39,9 @@
         <action
             android:id="@+id/action_mineFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_mineFragment_to_chatRoomFragment"
+            app:destination="@id/chatRoomFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -150,4 +160,17 @@
         android:id="@+id/evaluateBrowserFragment"
         android:name="com.wangqing.chilemecilent.view.evaluate.EvaluateBrowserFragment"
         android:label="EvaluateBrowserFragment" />
+    <fragment
+        android:id="@+id/chatRoomFragment"
+        android:name="com.wangqing.chilemecilent.view.mine.ChatRoomFragment"
+        android:label="吃喝聊天室"
+        tools:layout="@layout/fragment_chat_room" />
+    <fragment
+        android:id="@+id/messageLikeFragment"
+        android:name="com.wangqing.chilemecilent.view.message.MessageLikeFragment"
+        android:label="MessageLikeFragment" />
+    <fragment
+        android:id="@+id/messageReplyFragment"
+        android:name="com.wangqing.chilemecilent.view.message.MessageReplyFragment"
+        android:label="MessageReplyFragment" />
 </navigation>

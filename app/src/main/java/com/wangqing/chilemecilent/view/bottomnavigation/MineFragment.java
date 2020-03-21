@@ -97,6 +97,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             case R.id.infoLayout:
                 controller.navigate(R.id.action_mineFragment_to_editFragment);
                 break;
+            case R.id.chatRoomLayout:
+                controller.navigate(R.id.action_mineFragment_to_chatRoomFragment);
             default:
                 break;
         }
