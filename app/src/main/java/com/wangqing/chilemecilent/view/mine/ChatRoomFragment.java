@@ -97,6 +97,7 @@ public class ChatRoomFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String text = binding.editSend.getText().toString();
+                viewModel.sendMsg(text);
                 binding.editSend.setText("");
             }
         });

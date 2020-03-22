@@ -3,6 +3,8 @@ package com.wangqing.chilemecilent.viewmodel.mine;
 import android.app.Application;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -11,6 +13,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.gson.Gson;
 import com.wangqing.chilemecilent.object.dto.ChatDto;
 import com.wangqing.chilemecilent.object.dto.UserInfoDto;
+import com.wangqing.chilemecilent.utils.AppConfig;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -45,6 +48,8 @@ public class ChatRoomViewModel extends AndroidViewModel {
      */
     public ChatRoomViewModel(@NonNull Application application) {
         super(application);
+        connServer();
+        longConn();
     }
 
 
@@ -69,7 +74,7 @@ public class ChatRoomViewModel extends AndroidViewModel {
             @Override
             public void run() {
                 try {
-                    client = new Socket("", 54);
+                    client = new Socket(AppConfig.CHAT_PATH, AppConfig.CHAT_PORT);
                     br = new BufferedReader(new InputStreamReader(client.getInputStream()));
                     pw = new PrintWriter(new BufferedWriter(
                             new OutputStreamWriter(client.getOutputStream())
@@ -84,11 +89,17 @@ public class ChatRoomViewModel extends AndroidViewModel {
     }
 
     public void sendMsg(String msg){
-        ChatDto chatDto = new ChatDto(userInfo.getUserId(), userInfo.getAvatarUrl(), userInfo.getNickName(),
-                                msg, new Date());
-        String data = gson.toJson(chatDto);
-        pw.println(data);
-        pw.flush();
+        new Thread(){
+            @Override
+            public void run() {
+                ChatDto chatDto = new ChatDto(userInfo.getUserId(), userInfo.getAvatarUrl(), userInfo.getNickName(),
+                        msg, new Date());
+                String data = gson.toJson(chatDto);
+                pw.println(data);
+                pw.flush();
+            }
+        }.start();
+
     }
 
     public void longConn(){
@@ -97,11 +108,14 @@ public class ChatRoomViewModel extends AndroidViewModel {
             @Override
             public void run() {
                 while (true){
-                    if (client != null && client.isClosed() && !client.isInputShutdown()){
+                    if (client != null && client.isConnected() && !client.isInputShutdown()){
                         try {
                             String response;
-                            if ((response = br.readLine()) != null){
+                            if (br == null) continue;
+                            response = br.readLine();
+                            if (!TextUtils.isEmpty(response)){
                                 ChatDto chatDto = gson.fromJson(response, ChatDto.class);
+                                Log.d(AppConfig.TEST_TAG, "run: " + response);
                                 Message message = Message.obtain();
                                 message.what = 1;
                                 message.obj = chatDto;

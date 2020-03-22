@@ -14,6 +14,7 @@ import com.wangqing.chilemecilent.R;
 import com.wangqing.chilemecilent.object.dto.ChatDto;
 import com.wangqing.chilemecilent.utils.AppConfig;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class ChatRoomAdapter extends RecyclerView.Adapter<ChatRoomAdapter.Holder> {
@@ -22,6 +23,7 @@ public class ChatRoomAdapter extends RecyclerView.Adapter<ChatRoomAdapter.Holder
 
     private Integer userId;
 
+    private SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
 
 
     public ChatRoomAdapter(Integer userId) {
@@ -60,7 +62,8 @@ public class ChatRoomAdapter extends RecyclerView.Adapter<ChatRoomAdapter.Holder
 
         holder.msg.setText(info.getMsg());
 
-        holder.time.setText(info.getTime().toString());
+
+        holder.time.setText(df.format(info.getTime()));
     }
 
     @Override
@@ -71,7 +74,8 @@ public class ChatRoomAdapter extends RecyclerView.Adapter<ChatRoomAdapter.Holder
 
     @Override
     public int getItemViewType(int position) {
-        return chatList.get(position).getUserId();
+        int x = position;
+        return chatList == null ? position : chatList.get(position).getUserId();
     }
 
 
