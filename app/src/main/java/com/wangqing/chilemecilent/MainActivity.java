@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavController.OnD
         navController = Navigation.findNavController(this, R.id.fragment);
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.homeFragment,R.id.evaluateFragment, R.id.foodRecFragment, R.id.messageFragment, R.id.mineFragment
+                R.id.dynamicFragment,R.id.evaluateFragment, R.id.foodRecFragment, R.id.messageFragment, R.id.mineFragment
         ).build();
 
         // 设置顶部actionBar
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavController.OnD
     @Override
     public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
         switch (destination.getId()) {
-            case R.id.homeFragment:
+            case R.id.dynamicFragment:
             case R.id.foodRecFragment:
             case R.id.messageFragment:
             case R.id.mineFragment:

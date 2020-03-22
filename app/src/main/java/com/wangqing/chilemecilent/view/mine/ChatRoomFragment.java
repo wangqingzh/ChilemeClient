@@ -114,6 +114,7 @@ public class ChatRoomFragment extends Fragment {
         viewModel.getChatList().observe(getViewLifecycleOwner(), new Observer<List<ChatDto>>() {
             @Override
             public void onChanged(List<ChatDto> chatList) {
+                adapter.setChatList(chatList);
                 adapter.notifyDataSetChanged();
             }
         });

@@ -6,10 +6,10 @@
     app:startDestination="@id/mineFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.wangqing.chilemecilent.view.bottomnavigation.HomeFragment"
+        android:id="@+id/dynamicFragment"
+        android:name="com.wangqing.chilemecilent.view.bottomnavigation.DynamicFragment"
         android:label="动态"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_dynamic" />
     <fragment
         android:id="@+id/messageFragment"
         android:name="com.wangqing.chilemecilent.view.bottomnavigation.MessageFragment"
