@@ -9,6 +9,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MessageLikeDto {
+    public static final Integer LIKE_POST = 0;
+    public static final Integer LIKE_REPLY = 1;
     /* 点赞类型 */
     private Integer likeType;
     /* 被电赞内容　帖子标题或评论回复 */

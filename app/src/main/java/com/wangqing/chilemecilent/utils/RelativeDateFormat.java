@@ -1,5 +1,6 @@
 package com.wangqing.chilemecilent.utils;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class RelativeDateFormat {
@@ -13,7 +14,9 @@ public class RelativeDateFormat {
     private static final String ONE_HOUR_AGO = "小时前";
     private static final String ONE_DAY_AGO = "天前";
     private static final String ONE_MONTH_AGO = "月前";
-    private static final String ONE_YEAR_AGO = "年前";
+
+    private static final SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy-MM-dd");
+
 
     public static String format(Date date) {
 
@@ -41,8 +44,7 @@ public class RelativeDateFormat {
             long months = toMonths(delta);
             return (months <= 0 ? 1 : months) + ONE_MONTH_AGO;
         } else {
-            long years = toYears(delta);
-            return (years <= 0 ? 1 : years) + ONE_YEAR_AGO;
+            return yearFormat.format(date);
         }
     }
 
@@ -66,7 +68,4 @@ public class RelativeDateFormat {
         return toDays(date) / 30L;
     }
 
-    private static long toYears(long date) {
-        return toMonths(date) / 365L;
-    }
 }

@@ -2,6 +2,7 @@ package com.wangqing.chilemecilent.object.dto;
 
 import java.util.Date;
 
+import kotlin.jvm.internal.PropertyReference0Impl;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MessageReplyDto {
+
+    public static final Integer COMMENT_REPLY_TO_POST = 0;
+    public static final Integer COMMENT_REPLY_TO_REPLY = 1;
+
+    public static final Integer POST_TYPE_EVALUATE = 0;
+    public static final Integer POST_TYPE_FOOD_REC = 1;
+
     /* 评论类型 评论 回复 */
     private Integer commentType;
     /* 评论ID */
