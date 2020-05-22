@@ -102,6 +102,13 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(AppConfig.MINE_TO_CHAT_ROOM_KEY, mineViewModel.getInfo().getValue());
                 controller.navigate(R.id.action_mineFragment_to_chatRoomFragment, bundle);
+                break;
+            case R.id.foodGalleryLayout:
+                controller.navigate(R.id.action_mineFragment_to_foodGalleryFragment);
+                break;
+            case R.id.hotListLayout:
+                controller.navigate(R.id.action_mineFragment_to_hotListFragment);
+                break;
             default:
                 break;
         }

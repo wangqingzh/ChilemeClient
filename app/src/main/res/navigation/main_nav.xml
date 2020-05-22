@@ -42,6 +42,12 @@
         <action
             android:id="@+id/action_mineFragment_to_chatRoomFragment"
             app:destination="@id/chatRoomFragment" />
+        <action
+            android:id="@+id/action_mineFragment_to_foodGalleryFragment"
+            app:destination="@id/foodGalleryFragment" />
+        <action
+            android:id="@+id/action_mineFragment_to_hotListFragment"
+            app:destination="@id/hotListFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -173,4 +179,12 @@
         android:id="@+id/messageReplyFragment"
         android:name="com.wangqing.chilemecilent.view.message.MessageReplyFragment"
         android:label="MessageReplyFragment" />
+    <fragment
+        android:id="@+id/foodGalleryFragment"
+        android:name="com.wangqing.chilemecilent.view.mine.FoodGalleryFragment"
+        android:label="美食图库" />
+    <fragment
+        android:id="@+id/hotListFragment"
+        android:name="com.wangqing.chilemecilent.view.mine.HotListFragment"
+        android:label="一周热榜" />
 </navigation>

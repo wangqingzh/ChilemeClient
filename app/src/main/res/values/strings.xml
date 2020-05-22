@@ -100,5 +100,7 @@
     <string name="evaluate_button_post">发布</string>
     <string name="chat_room_send">发送</string>
     <string name="dynamic">动态</string>
+    <string name="mine_food_gallery">美食图库</string>
+    <string name="mine_hot_list">一周热榜</string>
 
 </resources>
