@@ -14,7 +14,7 @@ import com.wangqing.chilemecilent.utils.StringUtil;
 
 import java.util.List;
 
-public class HostListAdapter extends RecyclerView.Adapter<HostListAdapter.Holder> {
+public class HotListAdapter extends RecyclerView.Adapter<HotListAdapter.Holder> {
 
 
     private List<HotListDto> hotList;

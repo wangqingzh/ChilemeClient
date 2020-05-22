@@ -67,10 +67,10 @@ public class FoodGalleryFragment extends Fragment {
             viewModel.getGalleryListFromServer();
         }
 
-        RecyclerView recyclerView = getActivity().findViewById(R.id.recyclerView);
-        recyclerView.setAdapter(adapter);
+
+        binding.recyclerView.setAdapter(adapter);
         //recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        binding.recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
 
         binding.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
