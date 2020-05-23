@@ -83,14 +83,14 @@
 
         <ImageView
             android:id="@+id/imageViewLogo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:contentDescription="@string/logoImageView"
             app:layout_constraintBottom_toTopOf="@+id/editTextUserName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars[5]" />
+            tools:src="@drawable/app_icon" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

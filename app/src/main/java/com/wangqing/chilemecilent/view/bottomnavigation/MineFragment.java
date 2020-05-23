@@ -76,6 +76,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
         binding.buttonSpace.setOnClickListener(this);
         binding.chatRoomLayout.setOnClickListener(this);
+        binding.hotListLayout.setOnClickListener(this);
+        binding.foodGalleryLayout.setOnClickListener(this);
 
 
     }

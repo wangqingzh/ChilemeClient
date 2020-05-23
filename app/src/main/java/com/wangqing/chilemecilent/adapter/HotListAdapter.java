@@ -39,7 +39,7 @@ public class HotListAdapter extends RecyclerView.Adapter<HotListAdapter.Holder> 
 
     @Override
     public int getItemCount() {
-        return hotList.size();
+        return hotList != null ?hotList.size() : 0;
     }
 
     static class Holder extends RecyclerView.ViewHolder{

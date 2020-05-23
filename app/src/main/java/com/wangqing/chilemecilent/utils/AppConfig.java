@@ -18,6 +18,6 @@ public final class AppConfig {
 
     public static String MINE_TO_CHAT_ROOM_KEY = "MINE_TO_CHAT_ROOM_KEY";
 
-    public static final String CHAT_PATH = "192.168.2.150";
+    public static final String CHAT_PATH = "192.168.2.225";
     public static final Integer CHAT_PORT = 8090;
 }

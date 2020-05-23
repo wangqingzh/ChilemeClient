@@ -8,7 +8,7 @@ import lombok.Data;
 public class DynamicDto {
 
     public static final Integer POST_EVALUATE = 0;
-    public static final Integer POST_FOOD_REC = 0;
+    public static final Integer POST_FOOD_REC = 1;
 
     private Integer postType;
     private Integer postId;

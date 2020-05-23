@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.wangqing.chilemecilent.R;
 import com.wangqing.chilemecilent.databinding.FragmentSignInBinding;
 import com.wangqing.chilemecilent.object.ao.CommonResult;
@@ -63,6 +64,8 @@ public class SignInFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        Glide.with(requireContext()).load(R.drawable.app_icon).into(binding.imageViewLogo);
 
         binding.textViewSignUp.setOnClickListener(this);
 

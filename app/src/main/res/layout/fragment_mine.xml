@@ -343,7 +343,7 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_notifications_blue_24dp" />
+                    app:srcCompat="@drawable/chat_room" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -366,7 +366,7 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/app_icon" />
+                    app:srcCompat="@drawable/gallery" />
 
                 <TextView
                     android:id="@+id/textView9"
@@ -402,7 +402,7 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/app_icon" />
+                    app:srcCompat="@drawable/hot_list" />
 
                 <TextView
                     android:id="@+id/textView21"

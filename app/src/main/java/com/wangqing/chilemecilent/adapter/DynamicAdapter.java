@@ -76,8 +76,8 @@ public class DynamicAdapter extends RecyclerView.Adapter<DynamicAdapter.Holder> 
                     .load(AppConfig.BASE_URL + info.getPostImage())
                     .into(holder.postImage);
         }
-        holder.likeNumber.setText(info.getLikeNumber());
-        holder.commentNumber.setText(info.getCommentNumber());
+        holder.likeNumber.setText(String.valueOf(info.getLikeNumber()));
+        holder.commentNumber.setText(String.valueOf(info.getCommentNumber()));
 
 
 
